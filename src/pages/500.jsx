@@ -1,0 +1,57 @@
+import React, {Fragment} from 'react';
+import Seo from '../components/Seo';
+import NotFound from '../components/NotFound';
+import {getNotFoundPage, getSiteData} from '../api/sanity';
+import mergeMeta from '../utils/mergeMeta';
+import config from '../../config';
+
+const {siteName} = config;
+
+export const getStaticProps = async ({params}) => {
+	const [site, config] = await Promise.all([
+		getSiteData(),
+		getNotFoundPage(),
+	]);
+	const {notFoundPage} = config.layout;
+
+	return {
+		props: {
+			...site,
+			...notFoundPage,
+		},
+		revalidate: 60,
+	};
+};
+
+const NotFoundPage = ({
+	config = {},
+	title,
+	description = [],
+	cta,
+	background,
+	seo = {},
+}) => {
+	const defaultMeta = config.seo || {};
+
+	const fallbackMeta = {
+		metaTitle: `Error - ${siteName}`,
+		openGraphTitle: `Error - ${siteName}`,
+		twitterTitle: `Error - ${siteName}`,
+	};
+
+	const meta = mergeMeta([defaultMeta, fallbackMeta, seo]);
+
+	return (
+		<Fragment>
+			<Seo {...meta} />
+			<NotFound
+				title={title}
+				description={description}
+				cta={cta}
+				background={background}
+			/>
+		</Fragment>
+	);
+};
+
+export default NotFoundPage;

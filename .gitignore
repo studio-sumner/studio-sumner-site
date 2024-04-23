@@ -1,0 +1,12 @@
+.env
+.env*
+!.env.example
+.DS_Store
+node_modules
+.yarn-cache
+stats.json
+yarn-error.log
+.netlify
+next-env.d.ts
+.next
+/data

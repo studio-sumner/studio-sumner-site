@@ -1,0 +1,36 @@
+/*
+// === Tailwind ===
+*/
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/*
+// === Config, Functions, Reset ===
+*/
+
+@import './global/reset.css';
+
+/*
+// === Globals ===
+*/
+
+@import './global/fonts.css';
+@import './global/typography.css';
+
+/*
+// === Components ===
+*/
+
+@import './components/rich-text.css';
+@import './components/link.css';
+@import './components/hr.css';
+@import './components/scroll.css';
+@import './components/image.css';
+@import './components/button.css';
+@import './components/input.css';
+@import './components/cursor.css';
+@import './components/grid.css';
+@import './components/slider.css';
+@import './components/hero.css';

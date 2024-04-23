@@ -1,0 +1,5 @@
+@layer components {
+	.keen-slider.keen-slider.overflow-visible {
+		overflow: visible;
+	}
+}

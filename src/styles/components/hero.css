@@ -1,0 +1,19 @@
+@layer components {
+	.h-hero {
+		height: 100vh;
+		height: 100svh;
+	}
+	.min-h-hero {
+		min-height: 100vh;
+		min-height: 100svh;
+	}
+
+	.h-hero-80 {
+		height: 80vh;
+		height: 80svh;
+	}
+	.min-h-hero-80 {
+		min-height: 80vh;
+		min-height: 80svh;
+	}
+}

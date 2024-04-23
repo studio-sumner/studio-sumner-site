@@ -1,0 +1,130 @@
+@layer components {
+	/*
+	// === Main Rich Text ===
+	*/
+	.rich-text {
+		a {
+			text-decoration: underline;
+			text-decoration-thickness: 1px;
+			text-underline-offset: 2px;
+			text-decoration-color: currentColor;
+			transition: text-decoration-color 300ms
+				theme('transitionTimingFunction.in-out-quint');
+
+			&:hover {
+				text-decoration-color: transparent;
+			}
+		}
+
+		b,
+		strong {
+			font-weight: 600;
+		}
+
+		em,
+		i {
+			font-style: italic;
+		}
+
+		ul li {
+			position: relative;
+			padding-left: 15px;
+
+			&:before {
+				content: '·';
+				display: inline;
+				position: absolute;
+				left: 0;
+			}
+		}
+
+		ul li ul li:before {
+			content: '◦';
+		}
+
+		ul li ul li ul li:before {
+			content: '‣';
+		}
+
+		ol {
+			counter-reset: section;
+
+			li {
+				position: relative;
+				padding-left: 30px;
+
+				&:before {
+					@apply uppercase tracking-wider;
+					font-size: 12px;
+					counter-increment: section;
+					content: '[' counter(section) ']';
+					display: inline;
+					position: absolute;
+					left: 0;
+					opacity: 0.5;
+				}
+			}
+		}
+
+		ol li ol li:before {
+			content: '[' counter(section, lower-alpha) ']';
+		}
+
+		ol li ol li ol li:before {
+			content: '[' counter(section, lower-roman) ']';
+		}
+	}
+
+	.rich-text-page {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			@apply font-serif text-serif-24 tracking-tight mb-3 mt-6;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		h1 {
+			@apply text-serif-36;
+
+			@screen md {
+				@apply text-serif-64;
+			}
+		}
+
+		h2 {
+			@apply text-serif-36;
+
+			@screen md {
+				@apply text-serif-56;
+			}
+		}
+
+		h3 {
+			@screen md {
+				@apply text-serif-42;
+			}
+		}
+
+		h4 {
+			@screen md {
+				@apply text-serif-32;
+			}
+		}
+
+		p,
+		ol,
+		ul {
+			@apply tracking-wide;
+		}
+	}
+}
