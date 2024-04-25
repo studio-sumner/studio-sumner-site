@@ -1,1 +1,1 @@
-# Sprout - Headless Boilerplate
+# Sprout - Headless Website Boilerplate
