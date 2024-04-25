@@ -11,13 +11,6 @@ const client = createClient({
 	useCdn: false,
 });
 
-// Disable body parser for this request to validate webhook
-export const config = {
-	api: {
-		bodyParser: false,
-	},
-};
-
 export const shopifyImageToProductImage = shopifyImage => ({
 	_key: `product-image-${shopifyImage.id}`,
 	src: shopifyImage.src,
