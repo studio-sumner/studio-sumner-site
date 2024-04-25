@@ -46,6 +46,8 @@ export default {
 			to: [{type: 'footer'}],
 			validation: Rule => Rule.required(),
 		},
+
+		// ECOMMERCE
 		{
 			name: 'cart',
 			title: 'Cart',
@@ -53,6 +55,7 @@ export default {
 			to: [{type: 'cart'}],
 			validation: Rule => Rule.required(),
 		},
+
 		{
 			name: 'cookieBanner',
 			title: 'Cookie Banner',

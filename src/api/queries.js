@@ -23,6 +23,11 @@ export const pageLink = groq`{
 	featured,
 }`;
 
+//
+//
+// ECOMMERCE
+//
+//
 export const productLink = groq`{
 	_key,
 	_type,
@@ -32,7 +37,6 @@ export const productLink = groq`{
 	'slug': productLanding->slug.current,
 	featured,
 }`;
-
 export const collectionLink = groq`{
 	_key,
 	_type,
@@ -47,6 +51,8 @@ export const cta = groq`{
 	...,
 	_type == 'link' => ${link},
 	_type == 'pageLink' => ${pageLink},
+
+	// ECOMMERCE
 	_type == 'productLink' => ${productLink},
 	_type == 'collectionLink' => ${collectionLink},
 }`;
@@ -141,6 +147,12 @@ export const seo = groq`{
 	twitterDescription,
 	twitterImage ${asset},
 }`;
+
+//
+//
+// ECOMMERCE
+//
+//
 
 //
 // === Products ===
@@ -325,6 +337,12 @@ export const pageById = id => groq`*[
 ][0] {
 	${pageItems}
 }`;
+
+//
+//
+// ECOMMERCE
+//
+//
 
 export const productLandingItems = groq`
 	_id,

@@ -11,6 +11,8 @@ export default {
 	of: [
 		{type: 'link'},
 		{type: 'pageLink'},
+
+		// ECOMMERCE
 		{type: 'productLink'},
 		{type: 'collectionLink'},
 	],

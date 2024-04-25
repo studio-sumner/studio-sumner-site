@@ -91,6 +91,7 @@ const App = ({Component, pageProps, router}) => {
 		hydrateCart();
 	}, []);
 
+	// ECOMMERCE
 	// Open modal via query param
 	useEffect(() => {
 		if (query.cart) {
@@ -144,11 +145,14 @@ const App = ({Component, pageProps, router}) => {
 		</AnimatePresence>
 	);
 
+	// ECOMMERCE
+	const cartDrawer = <Cart {...cart} />;
+
 	const siteFragment = !showPasswordProtection && (
 		<FramerMotionConfig>
 			{promoBannerRibbon}
 			<Header {...header} />
-			<Cart {...cart} />
+			{cartDrawer}
 			{cookieBannerRibbon}
 			{animatedLayout}
 		</FramerMotionConfig>

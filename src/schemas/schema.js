@@ -2,18 +2,8 @@
 import richText from './types/richText';
 import link from './types/link';
 import pageLink from './types/pageLink';
-import collectionLink from './types/collectionLink';
-import productLink from './types/productLink';
 import cta from './types/cta';
 import ctaList from './types/ctaList';
-import price from './types/price';
-import product from './types/product';
-import productImage from './types/productImage';
-import productVariant from './types/productVariant';
-import productVariantOption from './types/productVariantOption';
-import productVariantOptionValue from './types/productVariantOptionValue';
-import productLanding from './types/productLanding';
-import collection from './types/collection';
 import page from './types/page';
 import seo from './types/seo';
 import video from './types/video';
@@ -31,6 +21,18 @@ import cookieBanner from './types/cookieBanner';
 import promoBanner from './types/promoBanner';
 import drawerGlobal from './types/drawerGlobal';
 
+// ECOMMERCE
+import collectionLink from './types/collectionLink';
+import productLink from './types/productLink';
+import price from './types/price';
+import product from './types/product';
+import productImage from './types/productImage';
+import productVariant from './types/productVariant';
+import productVariantOption from './types/productVariantOption';
+import productVariantOptionValue from './types/productVariantOptionValue';
+import productLanding from './types/productLanding';
+import collection from './types/collection';
+
 // Modules
 import pageComponentList from './types/pageComponentList';
 import globalComponentList from './types/globalComponentList';
@@ -41,18 +43,8 @@ export default [
 	richText,
 	link,
 	pageLink,
-	collectionLink,
-	productLink,
 	cta,
 	ctaList,
-	price,
-	product,
-	productImage,
-	productVariant,
-	productVariantOption,
-	productVariantOptionValue,
-	productLanding,
-	collection,
 	page,
 	seo,
 	video,
@@ -69,6 +61,18 @@ export default [
 	cookieBanner,
 	promoBanner,
 	drawerGlobal,
+
+	// ECOMMERCE
+	collectionLink,
+	productLink,
+	price,
+	product,
+	productImage,
+	productVariant,
+	productVariantOption,
+	productVariantOptionValue,
+	productLanding,
+	collection,
 
 	// Modules
 	pageComponentList,

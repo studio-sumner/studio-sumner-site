@@ -24,12 +24,12 @@ const pagesQuery = groq`*[
  	seo.hideFromSitemap != true
 ].slug.current`;
 
+// ECOMMERCE
 const productsQuery = groq`*[
 	_type == "productLanding" &&
 	!(_id in path("drafts.**")) &&
 	seo.hideFromSitemap != true
 ].slug.current`;
-
 const collectionsQuery = groq`*[
 	_type == "collection" &&
 	!(_id in path("drafts.**")) &&
@@ -52,6 +52,8 @@ export default async (req, res) => {
 	const pageLocations = pages.map(
 		slug => `<url><loc>${SITE_ROOT}/${slug}</loc></url>`,
 	);
+
+	// ECOMMERCE
 	const productLocations = products.map(
 		slug => `<url><loc>${SITE_ROOT}/products/${slug}</loc></url>`,
 	);
@@ -63,8 +65,8 @@ export default async (req, res) => {
 		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 			${homepageLocation}
 			${pageLocations.join('\n')}
-			${productLocations.join('\n')}
 			${collectionLocations.join('\n')}
+			${productLocations.join('\n')}
 		</urlset>
 	`);
 };
