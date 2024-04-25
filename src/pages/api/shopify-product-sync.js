@@ -1,3 +1,3 @@
 import route from '../../plugins/shopify/api/shopifyProductSync';
 
-export default route;
+export default async (...args) => await route(...args);
