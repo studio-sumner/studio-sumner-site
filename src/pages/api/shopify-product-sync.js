@@ -2,6 +2,8 @@ import {createClient} from '@sanity/client';
 import crypto from 'crypto';
 import {buffer} from 'micro';
 import find from 'lodash/find';
+import {encode, decode} from '../../utils/shopifyGid';
+import Shopify from '../../plugins/shopify/api/shopifyStorefront';
 
 // Disable body parser for this request to validate webhook
 export const config = {
@@ -105,6 +107,14 @@ export default async (req, res) => {
 	//
 
 	try {
+		// === Fetch Selling Plans ===
+		//
+		const shopifyId = encode('Product', data.id.toString(), {
+			accessToken:
+				process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+		});
+		const shopifyProduct = await Shopify.fetchProduct(shopifyId);
+
 		//
 		// === Build Structures ===
 		//
