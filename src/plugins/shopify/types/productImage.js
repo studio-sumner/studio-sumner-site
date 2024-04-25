@@ -1,6 +1,6 @@
 import React from 'react';
 import Emoji from 'a11y-react-emoji';
-import shopifyImageUrl from '../../utils/shopifyImageUrl';
+import shopifyImageUrl from '../utils/shopifyImageUrl';
 
 const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="📸" />;
 

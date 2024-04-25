@@ -24,12 +24,6 @@ import drawerGlobal from './types/drawerGlobal';
 // ECOMMERCE
 import collectionLink from './types/collectionLink';
 import productLink from './types/productLink';
-import price from './types/price';
-import product from './types/product';
-import productImage from './types/productImage';
-import productVariant from './types/productVariant';
-import productVariantOption from './types/productVariantOption';
-import productVariantOptionValue from './types/productVariantOptionValue';
 import productLanding from './types/productLanding';
 import collection from './types/collection';
 
@@ -65,12 +59,6 @@ export default [
 	// ECOMMERCE
 	collectionLink,
 	productLink,
-	price,
-	product,
-	productImage,
-	productVariant,
-	productVariantOption,
-	productVariantOptionValue,
 	productLanding,
 	collection,
 

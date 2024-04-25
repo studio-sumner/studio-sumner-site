@@ -2,6 +2,7 @@ import React from 'react';
 import Emoji from 'a11y-react-emoji';
 import {EditIcon, EyeOpenIcon} from '@sanity/icons';
 import CmsIframePreview from '../components/CmsIframePreview.jsx';
+import {shopifyProductDeskItems} from '../plugins/shopify/deskStructure';
 
 const PREVIEW_URL = process.env.NEXT_PUBLIC_CMS_PREVIEW_URL;
 const PREVIEW_TOKEN = process.env.NEXT_PUBLIC_CMS_PREVIEW_TOKEN;
@@ -155,66 +156,6 @@ export default S => {
 	// === Products ===
 	//
 
-	const variantsByProduct = S.listItem()
-		.title('By Product')
-		.icon(VariantIcon)
-		.child(
-			S.documentList()
-				.title('Products')
-				.menuItems(S.documentTypeList('product').getMenuItems())
-				.filter('_type == $type && !defined(parents)')
-				.params({type: 'product'})
-				.child(productId =>
-					S.documentList()
-						.title('Variants')
-						.menuItems(
-							S.documentTypeList('productVariant').getMenuItems(),
-						)
-						.filter('_type == $type && productId == $productId')
-						.params({
-							type: 'productVariant',
-							productId: Number(productId),
-						}),
-				),
-		);
-
-	const orphanedVariants = S.listItem()
-		.title('Orphaned')
-		.icon(VariantIcon)
-		.child(
-			S.documentList()
-				.title('Variants')
-				.menuItems(S.documentTypeList('productVariant').getMenuItems())
-				.filter(
-					'_type == $type && count(*[ _type == "product" && references(^._id)]) == 0 && !(_id in path("drafts.**"))',
-				)
-				.params({type: 'productVariant'}),
-		);
-
-	const allShopifyVariants = S.listItem()
-		.title('All Variants')
-		.icon(VariantIcon)
-		.child(
-			S.documentList()
-				.title('Variants')
-				.menuItems(S.documentTypeList('productVariant').getMenuItems())
-				.filter('_type == $type')
-				.params({type: 'productVariant'}),
-		);
-
-	const variantsMenuItem = S.listItem()
-		.title('Product Variants')
-		.icon(VariantIcon)
-		.child(
-			S.list()
-				.title('Product Variants')
-				.items([
-					variantsByProduct,
-					orphanedVariants,
-					allShopifyVariants,
-				]),
-		);
-
 	const productLandings = S.listItem()
 		.title('Product Landings')
 		.schemaType('productLanding')
@@ -239,16 +180,7 @@ export default S => {
 				),
 		);
 
-	const productsMenuItem = S.listItem()
-		.title('Products')
-		.icon(ProductIcon)
-		.child(
-			S.documentList()
-				.title('Products')
-				.menuItems(S.documentTypeList('product').getMenuItems())
-				.filter('_type == $type')
-				.params({type: 'product'}),
-		);
+	const shopifyDeskItems = shopifyProductDeskItems(S);
 
 	const productMenuItem = S.listItem()
 		.title('Products')
@@ -256,12 +188,7 @@ export default S => {
 		.child(
 			S.list()
 				.title('Products')
-				.items([
-					productLandings,
-					S.divider(),
-					productsMenuItem,
-					variantsMenuItem,
-				]),
+				.items([productLandings, S.divider(), ...shopifyDeskItems]),
 		);
 
 	//
@@ -299,13 +226,13 @@ export default S => {
 		pageMenuItem,
 		layouts,
 		modules,
+		S.divider(),
 
 		// ECOMMERCE
-		S.divider(),
 		collectionMenuItem,
 		productMenuItem,
-
 		S.divider(),
+
 		configParent,
 	]);
 };

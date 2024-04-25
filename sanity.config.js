@@ -8,6 +8,9 @@ import {vercelWidget} from 'sanity-plugin-dashboard-widget-vercel';
 import {visionTool} from '@sanity/vision';
 import {noteField} from 'sanity-plugin-note-field';
 
+// ECOMM
+import {shopify} from './src/plugins/shopify';
+
 import schemaTypes from './src/schemas/schema';
 import {media, mediaAssetSource} from 'sanity-plugin-media';
 import {muxInput} from 'sanity-plugin-mux-input';
@@ -26,6 +29,9 @@ export default defineConfig({
 	projectId,
 	dataset,
 	plugins: [
+		// ECOMM
+		shopify(),
+
 		deskTool({
 			structure: deskStructure,
 		}),
