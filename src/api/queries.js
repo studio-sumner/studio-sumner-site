@@ -48,7 +48,6 @@ export const collectionLink = groq`{
 }`;
 
 export const cta = groq`{
-	...,
 	_type == 'link' => ${link},
 	_type == 'pageLink' => ${pageLink},
 
@@ -63,8 +62,8 @@ export const asset = groq`{
 	...(asset->{
 		'lqip': metadata.lqip,
 		'dimensions': metadata.dimensions,
+		'alt': altText,
 		url,
-		alt,
 	}),
 }`;
 

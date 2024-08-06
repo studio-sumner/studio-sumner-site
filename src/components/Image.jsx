@@ -14,12 +14,12 @@ export default function Image({
 	imgProps = {},
 	pictureProps = {},
 	lazy = true,
-	lazyThreshold = 0,
+	lazyThreshold = 2, // within 2 viewport heights
 	lazyBlur = true,
 	...props
 }) {
 	const [isLoaded, setIsLoaded] = useState(false);
-	const {hasSeen, ref} = useScrollIntoView(2); // within 2 viewport heights
+	const {hasSeen, ref} = useScrollIntoView(lazyThreshold);
 	const fullResolutionEnabled = !lazy || (lazy && hasSeen);
 	const showFullResolution = !lazy || (lazy && hasSeen && isLoaded);
 

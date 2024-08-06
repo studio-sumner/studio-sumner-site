@@ -1,11 +1,10 @@
-import '../../../styles/main.css';
+import '../../../styles/global/reset.css';
 
 import React from 'react';
 
 export default function RootLayout({children}) {
 	return (
 		<html>
-			<head />
 			<body>{children}</body>
 		</html>
 	);
