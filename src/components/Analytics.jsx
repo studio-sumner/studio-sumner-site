@@ -14,7 +14,7 @@ export default function Analytics() {
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
-					gtag('config', ${process.env.NEXT_PUBLIC_GA4_PROPERTY});
+					gtag('config', '${process.env.NEXT_PUBLIC_GA4_PROPERTY}');
 				`,
 				}}
 			/>
