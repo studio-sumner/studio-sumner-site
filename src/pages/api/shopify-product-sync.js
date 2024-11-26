@@ -115,6 +115,8 @@ export default async (req, res) => {
 		});
 		const shopifyProduct = await Shopify.fetchProduct(shopifyId);
 
+		console.log(shopifyProduct);
+
 		//
 		// === Build Structures ===
 		//
@@ -146,14 +148,14 @@ export default async (req, res) => {
 					_type: 'productVariantOptionValue',
 					name: value,
 				})),
-				requiresSellingPlan: shopifyProduct
-					? shopifyProduct.requiresSellingPlan
-					: null,
 			})),
 			image: data.image ? shopifyImageToProductImage(data.image) : null,
 			images: data.images
 				? data.images.map(shopifyImageToProductImage)
 				: [],
+			requiresSellingPlan: shopifyProduct
+				? shopifyProduct.requiresSellingPlan
+				: null,
 		};
 
 		//
@@ -277,6 +279,10 @@ export default async (req, res) => {
 
 			if (!variant.option3) {
 				tx = tx.patch(variant._id, p => p.unset(['option3']));
+			}
+
+			if (!variant.image) {
+				tx = tx.patch(variant._id, p => p.unset(['image']));
 			}
 
 			if (!variant.sellingPlanOptions) {

@@ -5,6 +5,7 @@ import productImage from './types/productImage';
 import productVariant from './types/productVariant';
 import productVariantOption from './types/productVariantOption';
 import productVariantOptionValue from './types/productVariantOptionValue';
+import productVariantSellingPlanOption from './types/productVariantSellingPlanOption';
 
 // Export plugin
 export const shopify = definePlugin({
@@ -17,6 +18,7 @@ export const shopify = definePlugin({
 			productVariant,
 			productVariantOption,
 			productVariantOptionValue,
+			productVariantSellingPlanOption,
 		],
 	},
 });

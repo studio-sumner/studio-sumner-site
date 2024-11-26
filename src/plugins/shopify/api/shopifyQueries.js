@@ -6,6 +6,7 @@ export const money = `{
 export const productFields = `
 	id
 	availableForSale
+	requiresSellingPlan
 	handle
 	productType
 	title
@@ -15,6 +16,24 @@ export const productFields = `
 	options {
 		name
 		values
+	}
+`;
+
+export const sellingPlanFields = `
+	sellingPlan {
+		id
+		name
+		options {
+			name
+			value
+		}
+		description
+		recurringDeliveries
+	}
+	priceAdjustments {
+		compareAtPrice ${money}
+		price ${money}
+		perDeliveryPrice ${money}
 	}
 `;
 
@@ -28,7 +47,7 @@ export const variantFields = `
 		value
 	}
 	sku
-	price ${money}	
+	price ${money}
 	compareAtPrice ${money}
 	image {
 		id
@@ -51,6 +70,13 @@ export const variantFields = `
 	}
 	product {
 		${productFields}
+	}
+	sellingPlanAllocations(first: 100) {
+		edges {
+			node {
+				${sellingPlanFields}
+			}
+		}
 	}
 `;
 

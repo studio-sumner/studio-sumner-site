@@ -108,12 +108,22 @@ export const media = groq`{
 
 export const richText = groq`[]{
 	...,
+	
 	asset->{
 		'lqip': metadata.lqip,
 		'dimensions': metadata.dimensions,
 		url,
 		alt,
 	},
+
+	'markDefs': coalesce(markDefs[] {
+		...,
+
+		_type == 'textColor' => {
+			...,
+			color-> ${colorStyle},
+		},
+	}, []),
 }`;
 
 export const colorStyle = groq`{

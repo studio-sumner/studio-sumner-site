@@ -98,6 +98,12 @@ export default {
 			of: [{type: 'productImage'}],
 			readOnly: true,
 		},
+		{
+			name: 'requiresSellingPlan',
+			title: 'Requires Selling Plan',
+			type: 'boolean',
+			readOnly: true,
+		},
 	],
 	preview: {
 		select: {

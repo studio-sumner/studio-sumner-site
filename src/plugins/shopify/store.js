@@ -21,7 +21,7 @@ export const getInitialState = (set, get, config) => ({
 
 export const fetchCart = (set, get, config) => async () => {
 	const {activeCountryId} = get();
-	const create = createCart(set, get);
+	const create = createCart(set, get, config);
 
 	const {cartId} = get();
 
@@ -68,8 +68,8 @@ export const createCart = (set, get, config) => async () => {
 };
 
 export const hydrateCart = (set, get, config) => async () => {
-	const fetch = fetchCart(set, get);
-	const create = createCart(set, get);
+	const fetch = fetchCart(set, get, config);
+	const create = createCart(set, get, config);
 
 	const cartId = cookie.get(config.cookieCartKey);
 

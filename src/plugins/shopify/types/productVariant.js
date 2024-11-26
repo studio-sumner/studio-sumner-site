@@ -81,6 +81,13 @@ export default {
 			type: 'productImage',
 			readOnly: true,
 		},
+		{
+			name: 'sellingPlanOptions',
+			title: 'Selling Plan Options',
+			type: 'array',
+			readOnly: true,
+			of: [{type: 'productVariantSellingPlanOption'}],
+		},
 	],
 	preview: {
 		select: {
