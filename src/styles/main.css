@@ -23,6 +23,7 @@
 // === Components ===
 */
 
+@import './components/loader.css';
 @import './components/rich-text.css';
 @import './components/link.css';
 @import './components/hr.css';

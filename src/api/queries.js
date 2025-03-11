@@ -72,6 +72,23 @@ export const video = groq`{
 	asset->,
 }`;
 
+export const colorStyle = groq`{
+	_key,
+	title,
+
+	'style': style[0] {
+		_type,
+
+		_type == 'color' => {
+			...,
+		},
+
+		_type == 'ombre' => {
+			style,
+		},
+	}
+}`;
+
 export const backgroundMedia = groq`{
 	_type,
 	_key,
@@ -124,23 +141,6 @@ export const richText = groq`[]{
 			color-> ${colorStyle},
 		},
 	}, []),
-}`;
-
-export const colorStyle = groq`{
-	_key,
-	title,
-
-	'style': style[0] {
-		_type,
-
-		_type == 'color' => {
-			...,
-		},
-
-		_type == 'ombre' => {
-			style,
-		},
-	}
 }`;
 
 export const seo = groq`{
