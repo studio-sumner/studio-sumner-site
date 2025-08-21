@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import queryString from 'query-string';
 
 const DEFAULT_PROPS = {
 	auto: 'format',
@@ -11,9 +11,10 @@ const sanityImageUrl = (src = '', props = {}) => {
 		...props,
 	};
 
-	const query = map(updatedProps, (value, key) => `${key}=${value}`);
+	const {url, ...propsWithoutUrl} = updatedProps;
+	const query = queryString.stringify(propsWithoutUrl);
 
-	return `${src}?${query.join('&')}`;
+	return `${src}?${query}`;
 };
 
 export default sanityImageUrl;
