@@ -27,9 +27,6 @@ const redirectsQuery = groq`*[
 }`;
 
 module.exports = {
-	experimental: {
-		esmExternals: 'loose', // TODO: remove because of Mux input
-	},
 	redirects: async () => {
 		const allRedirects = await client.fetch(redirectsQuery);
 
