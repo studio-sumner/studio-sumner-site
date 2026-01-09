@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 import config from '../../config';
 
 import {
@@ -38,25 +38,25 @@ export const setCartOpen = (set, get) => isCartOpen => {
 };
 
 const completePasswordCheck = (set, get) => () => {
-	cookie.set(PASSWORD_KEY, 'true', {expires: PASSWORD_EXPIRATION});
+	Cookies.set(PASSWORD_KEY, 'true', {expires: PASSWORD_EXPIRATION});
 
 	set({hasEnteredSitePassword: true});
 };
 
 const hydratePassword = (set, get) => () => {
-	const hasEnteredSitePassword = Boolean(cookie.get(PASSWORD_KEY));
+	const hasEnteredSitePassword = Boolean(Cookies.get(PASSWORD_KEY));
 
 	set({hasEnteredSitePassword});
 };
 
 const completeCookieCheck = (set, get) => () => {
-	cookie.set(COOKIE_KEY, 'true', {expires: 7});
+	Cookies.set(COOKIE_KEY, 'true', {expires: 7});
 
 	set({hasClosedCookies: true});
 };
 
 const hydrateCookies = (set, get) => () => {
-	const hasClosedCookies = Boolean(cookie.get(COOKIE_KEY));
+	const hasClosedCookies = Boolean(Cookies.get(COOKIE_KEY));
 
 	set({hasClosedCookies});
 };
