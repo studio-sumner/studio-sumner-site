@@ -3,16 +3,6 @@
 	--color-black: #000;
 	--color-white: #fff;
 
-	/* === Breakpoints === */
-	--breakpoint-2xs: 360px;
-	--breakpoint-xs: 400px;
-	--breakpoint-sm: 600px;
-	--breakpoint-md: 800px;
-	--breakpoint-lg: 1000px;
-	--breakpoint-xl: 1200px;
-	--breakpoint-2xl: 1400px;
-	--breakpoint-3xl: 1600px;
-
 	/* === Spacing === */
 	--spacing: 10px;
 	--spacing-px: 1px;
@@ -50,11 +40,6 @@
 	--tracking-wider: 0.14em;
 
 	/* === Border Radius === */
-	--radius-0: 0px;
-	--radius-3: 3px;
-	--radius-6: 6px;
-	--radius-12: 12px;
-	--radius-24: 24px;
 	--radius-full: 100%;
 
 	/* === Transition Timing Functions === */
@@ -113,4 +98,16 @@
 	--z-index-8: 80;
 	--z-index-9: 90;
 	--z-index-10: 100;
+}
+
+@utility tracking-* {
+	letter-spacing: calc(--value(number) * 0.01em);
+}
+
+@utility -tracking-* {
+	letter-spacing: calc((--value(number) * -1) * 0.01em);
+}
+
+@utility rounded-* {
+	border-radius: --value(number);
 }

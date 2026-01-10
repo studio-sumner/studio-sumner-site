@@ -36,7 +36,7 @@ const Homepage = ({config = {}, title, seo = {}, components = [], layout}) => {
 				<div className="col-span-10 col-start-2">sup</div>
 			</div>
 
-			<div className="bg-black text-white rounded-6 p-container-mobile text-24/32">
+			<div className="bg-black text-white rounded-full p-container-mobile text-24/32">
 				Hello
 			</div>
 		</Fragment>

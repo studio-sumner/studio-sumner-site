@@ -2,7 +2,7 @@
 // === Tailwind + Config ===
 */
 
-@config '../../tailwind.config.js'; /* This is for generated values only */
+@config './config.js'; /* This is for shared values */
 @import './global/theme.css';
 @import 'tailwindcss';
 
