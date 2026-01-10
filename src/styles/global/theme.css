@@ -1,0 +1,121 @@
+@theme {
+	/* === Breakpoints === */
+	--breakpoint-2xs: 360px;
+	--breakpoint-xs: 400px;
+	--breakpoint-sm: 600px;
+	--breakpoint-md: 800px;
+	--breakpoint-lg: 1000px;
+	--breakpoint-xl: 1200px;
+	--breakpoint-2xl: 1400px;
+	--breakpoint-3xl: 1600px;
+
+	/* === Colors === */
+	--color-black: #000;
+	--color-white: #fff;
+
+	/* === Spacing === */
+	--spacing: 10px;
+	--spacing-px: 1px;
+	--spacing-half: 5px;
+	--spacing-container-mobile: 10px;
+	--spacing-container-desktop: 20px;
+	--spacing-gutter-mobile: 10px;
+	--spacing-gutter-desktop: 20px;
+	--spacing-grid: 1900px;
+
+	/* === Grid === */
+	--grid-columns: 12;
+	--grid-max-width: 1900px;
+
+	/* === Border Radius === */
+	--radius-0: 0px;
+	--radius-3: 3px;
+	--radius-6: 6px;
+	--radius-12: 12px;
+	--radius-24: 24px;
+	--radius-full: 100%;
+
+	/* === Font Families === */
+	--font-sans:
+		'Helvetica Neue LT Std', -apple-system, BlinkMacSystemFont,
+		'Helvetica Neue', Helvetica, sans-serif;
+
+	/* === Font Weights === */
+	--font-weight-100: 100;
+	--font-weight-200: 200;
+	--font-weight-300: 300;
+	--font-weight-400: 400;
+	--font-weight-500: 500;
+	--font-weight-600: 600;
+	--font-weight-700: 700;
+	--font-weight-800: 800;
+	--font-weight-900: 900;
+
+	/* === Font Sizes === */
+	--text-16: 16px;
+
+	--leading-24: 24px;
+
+	/* === Letter Spacing === */
+	--tracking-tight: -0.01em;
+	--tracking-normal: 0;
+	--tracking-wide: 0.04em;
+	--tracking-wider: 0.14em;
+
+	/* === Transition Timing Functions === */
+	--ease-default: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+	--ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+	--ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+	--ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	--ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+	/* === Transition Durations === */
+	--duration-100: 100ms;
+	--duration-200: 200ms;
+	--duration-300: 300ms;
+	--duration-400: 400ms;
+	--duration-500: 500ms;
+	--duration-600: 600ms;
+	--duration-700: 700ms;
+	--duration-800: 800ms;
+	--duration-900: 900ms;
+	--duration-1000: 1000ms;
+
+	/* === Aspect Ratios === */
+	--aspect-square: 1 / 1;
+	--aspect-video: 1920 / 1080;
+
+	/* === Z-Index === */
+	--z-index-auto: auto;
+	--z-index-0: 0;
+	--z-index-1: 10;
+	--z-index-2: 20;
+	--z-index-3: 30;
+	--z-index-4: 40;
+	--z-index-5: 50;
+	--z-index-6: 60;
+	--z-index-7: 70;
+	--z-index-8: 80;
+	--z-index-9: 90;
+	--z-index-10: 100;
+}

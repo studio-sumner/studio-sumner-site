@@ -1,9 +1,8 @@
 input,
 textarea {
-	@apply text-sans-16 font-sans;
+	@apply font-sans text-16/24 text-black;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: theme('colors.black');
 	display: inline-block;
 	padding: 0;
 	margin: 0;

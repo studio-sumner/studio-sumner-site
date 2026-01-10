@@ -19,7 +19,6 @@
 	},
 	"dependencies": {
 		"@babel/eslint-parser": "^7.28.5",
-		"@icons/material": "^0.4.1",
 		"@sanity/block-content-to-react": "^3.0.0",
 		"@sanity/client": "^7.14.0",
 		"@sanity/code-input": "^7.0.4",
@@ -31,9 +30,9 @@
 		"@sanity/ui": "^3.1.11",
 		"@sanity/vision": "^5.2.0",
 		"@sanity/webhook": "^4.0.4",
+		"@tailwindcss/postcss": "^4.1.18",
 		"a11y-react-emoji": "^1.2.0",
 		"algoliasearch": "^5.46.2",
-		"autoprefixer": "^10.4.23",
 		"axios": "^1.13.2",
 		"classnames": "^2.2.6",
 		"date-fns": "^4.1.0",
@@ -52,7 +51,6 @@
 		"next-sanity": "^12.0.10",
 		"postcss": "^8.5.6",
 		"postcss-hexrgba": "^2.0.1",
-		"postcss-import": "^16.1.1",
 		"query-string": "^9.3.1",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
@@ -67,7 +65,7 @@
 		"sanity-plugin-note-field": "^2.0.1",
 		"slugify": "^1.6.6",
 		"styled-components": "^6.2.0",
-		"tailwindcss": "^3.0.13",
+		"tailwindcss": "^4.1.18",
 		"zustand": "^5.0.9"
 	},
 	"devDependencies": {

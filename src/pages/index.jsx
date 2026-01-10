@@ -26,6 +26,9 @@ const Homepage = ({config = {}, title, seo = {}, components = [], layout}) => {
 		<Fragment>
 			<Seo {...meta} />
 			<PageComponentList components={components} />
+			<div className="px-2">
+				<a className="link-underline">sup</a>
+			</div>
 		</Fragment>
 	);
 };

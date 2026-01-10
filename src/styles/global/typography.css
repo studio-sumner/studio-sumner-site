@@ -4,7 +4,7 @@
 
 html,
 body {
-	@apply font-sans text-sans-16 font-400;
+	@apply font-sans text-16/24 font-400;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -15,12 +15,10 @@ body {
 
 * {
 	&::-moz-selection {
-		background-color: theme('colors.black');
-		color: theme('colors.white');
+		@apply bg-black text-white;
 	}
 	&::selection {
-		background-color: theme('colors.black');
-		color: theme('colors.white');
+		@apply bg-black text-white;
 	}
 }
 
@@ -36,7 +34,7 @@ body {
 	ol,
 	ul,
 	p {
-		margin-bottom: theme('lineHeight.sans-16');
+		@apply mb-24;
 
 		&:last-child {
 			margin-bottom: 0;

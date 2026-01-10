@@ -2,14 +2,13 @@
 // === Tailwind ===
 */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
 
 /*
 // === Config, Functions, Reset ===
 */
 
+@import './global/theme.css';
 @import './global/reset.css';
 
 /*

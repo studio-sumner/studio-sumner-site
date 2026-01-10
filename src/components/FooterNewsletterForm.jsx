@@ -79,7 +79,7 @@ export default function FooterNewsletterForm({
 							ease: ease.appear,
 							duration: 400 / 1000,
 						}}>
-						<p className="text-sans-12-caps uppercase tracking-wider text-terracotta">
+						<p className="uppercase tracking-wider text-terracotta">
 							{caption}
 						</p>
 					</motion.div>
@@ -90,11 +90,7 @@ export default function FooterNewsletterForm({
 
 	const headerRow = (
 		<div className="flex flex-col gap-1 mb-2 md:mb-4">
-			{title && (
-				<h3 className="font-serif text-serif-20 md:text-serif-24 tracking-tight">
-					{title}
-				</h3>
-			)}
+			{title && <h3>{title}</h3>}
 			{Boolean(description && description.length) && (
 				<div className="rich-text line-break tracking-wide xl:pr-8">
 					<BlockContent blocks={description} serializers={richText} />

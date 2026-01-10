@@ -153,7 +153,7 @@ button,
 
 	&:focus-visible,
 	&.focus-visible {
-		outline: 2px dotted var(--theme-color, theme('colors.black'));
+		outline: 2px dotted var(--color-black);
 	}
 }
 

@@ -8,8 +8,7 @@
 			text-decoration-thickness: 1px;
 			text-underline-offset: 2px;
 			text-decoration-color: currentColor;
-			transition: text-decoration-color 300ms
-				theme('transitionTimingFunction.in-out-quint');
+			transition: text-decoration-color 300ms var(--ease-in-out-quad);
 
 			&:hover {
 				text-decoration-color: transparent;
@@ -72,59 +71,6 @@
 
 		ol li ol li ol li:before {
 			content: '[' counter(section, lower-roman) ']';
-		}
-	}
-
-	.rich-text-page {
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			@apply font-serif text-serif-24 tracking-tight mb-3 mt-6;
-
-			&:first-child {
-				margin-top: 0;
-			}
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
-
-		h1 {
-			@apply text-serif-36;
-
-			@screen md {
-				@apply text-serif-64;
-			}
-		}
-
-		h2 {
-			@apply text-serif-36;
-
-			@screen md {
-				@apply text-serif-56;
-			}
-		}
-
-		h3 {
-			@screen md {
-				@apply text-serif-42;
-			}
-		}
-
-		h4 {
-			@screen md {
-				@apply text-serif-32;
-			}
-		}
-
-		p,
-		ol,
-		ul {
-			@apply tracking-wide;
 		}
 	}
 }

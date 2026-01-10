@@ -1,6 +1,6 @@
 button,
 .button {
-	@apply text-sans-16 font-sans;
+	@apply font-sans text-16/24;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
