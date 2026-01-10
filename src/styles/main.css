@@ -1,20 +1,14 @@
 /*
-// === Tailwind ===
+// === Tailwind + Config ===
 */
 
-@import 'tailwindcss';
-
-/*
-// === Config, Functions, Reset ===
-*/
-
+@config '../../tailwind.config.js'; /* This is for generated values only */
 @import './global/theme.css';
-@import './global/reset.css';
+@import 'tailwindcss';
 
 /*
 // === Globals ===
 */
-
 @import './global/fonts.css';
 @import './global/typography.css';
 

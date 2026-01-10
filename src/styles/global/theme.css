@@ -1,4 +1,8 @@
 @theme {
+	/* === Colors === */
+	--color-black: #000;
+	--color-white: #fff;
+
 	/* === Breakpoints === */
 	--breakpoint-2xs: 360px;
 	--breakpoint-xs: 400px;
@@ -8,10 +12,6 @@
 	--breakpoint-xl: 1200px;
 	--breakpoint-2xl: 1400px;
 	--breakpoint-3xl: 1600px;
-
-	/* === Colors === */
-	--color-black: #000;
-	--color-white: #fff;
 
 	/* === Spacing === */
 	--spacing: 10px;
@@ -26,14 +26,6 @@
 	/* === Grid === */
 	--grid-columns: 12;
 	--grid-max-width: 1900px;
-
-	/* === Border Radius === */
-	--radius-0: 0px;
-	--radius-3: 3px;
-	--radius-6: 6px;
-	--radius-12: 12px;
-	--radius-24: 24px;
-	--radius-full: 100%;
 
 	/* === Font Families === */
 	--font-sans:
@@ -51,16 +43,19 @@
 	--font-weight-800: 800;
 	--font-weight-900: 900;
 
-	/* === Font Sizes === */
-	--text-16: 16px;
-
-	--leading-24: 24px;
-
 	/* === Letter Spacing === */
 	--tracking-tight: -0.01em;
 	--tracking-normal: 0;
 	--tracking-wide: 0.04em;
 	--tracking-wider: 0.14em;
+
+	/* === Border Radius === */
+	--radius-0: 0px;
+	--radius-3: 3px;
+	--radius-6: 6px;
+	--radius-12: 12px;
+	--radius-24: 24px;
+	--radius-full: 100%;
 
 	/* === Transition Timing Functions === */
 	--ease-default: cubic-bezier(0.23, 1, 0.32, 1);
