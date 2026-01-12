@@ -24,67 +24,67 @@ const initializeDataset = async dataset => {
 	console.log('Uploading images to sanity');
 
 	const tshirtPath = path.join(__dirname, 'assets', 'tshirt.jpg');
-	const tshirtImageBuffer = fs.readFileSync(tshirtPath);
-	const tshirtAsset = await client.assets.upload('image', tshirtImageBuffer);
+	const heroPath = path.join(__dirname, 'assets', 'hero.jpg');
+
+	const [tshirtImageBuffer, heroImageBuffer] = await Promise.all([
+		fs.promises.readFile(tshirtPath),
+		fs.promises.readFile(heroPath),
+	]);
+
+	const [tshirtAsset, heroAsset] = await Promise.all([
+		client.assets.upload('image', tshirtImageBuffer),
+		client.assets.upload('image', heroImageBuffer),
+	]);
 
 	// Create initial pages
 	console.log('Creating initial pages');
 
-	const [promoBanner, cart, notFoundPage, homepage, tShirtProduct] =
-		await Promise.all([
-			client.create({
-				_type: 'promoBanner',
-				title: 'Promo Banner',
-				description: [
-					{
-						_key: 'promoBannerBlock',
-						_type: 'block',
-						children: [
-							{
-								_key: 'promoBannerSpan',
-								_type: 'span',
-								marks: [],
-								text: 'Free shipping on orders over $100',
-							},
-						],
-						markDefs: [],
-						style: 'normal',
-					},
-				],
-			}),
-
-			client.create({
-				_type: 'cart',
-				title: 'Cart',
-				drawerTitle: 'Cart',
-			}),
-
-			client.create({
-				_type: 'notFound',
-				title: '404',
-			}),
-
-			client.create({
-				_type: 'page',
-				title: 'Homepage',
-				slug: {
-					current: 'homepage',
+	const [promoBanner, cart, notFoundPage, tShirtProduct] = await Promise.all([
+		client.create({
+			_type: 'promoBanner',
+			title: 'Promo Banner',
+			description: [
+				{
+					_key: 'promoBannerBlock',
+					_type: 'block',
+					children: [
+						{
+							_key: 'promoBannerSpan',
+							_type: 'span',
+							marks: [],
+							text: 'Free shipping on orders over $100',
+						},
+					],
+					markDefs: [],
+					style: 'normal',
 				},
-			}),
+			],
+		}),
 
-			client.create({
-				_type: 'productLanding',
-				title: 'Sprout T-Shirt',
-				slug: {
-					current: 'sprout-t-shirt',
-				},
-				mainImage: {
-					_type: 'image',
-					_ref: tshirtAsset._id,
-					_key: tshirtAsset._id,
-				},
-			}),
-		]);
+		client.create({
+			_type: 'cart',
+			title: 'Cart',
+			drawerTitle: 'Cart',
+		}),
+
+		client.create({
+			_type: 'notFound',
+			title: '404',
+		}),
+
+		client.create({
+			_type: 'productLanding',
+			title: 'Sprout T-Shirt',
+			slug: {
+				current: 'sprout-t-shirt',
+			},
+			mainImage: {
+				_type: 'image',
+				_ref: tshirtAsset._id,
+				_key: tshirtAsset._id,
+			},
+		}),
+	]);
 
 	// Add products to merch collection
 	console.log('Adding products to merch collection');
@@ -100,6 +100,86 @@ const initializeDataset = async dataset => {
 				_type: 'reference',
 				_ref: tShirtProduct._id,
 				_key: tShirtProduct._id,
+			},
+		],
+	});
+
+	// Create modular homepage
+	console.log('Creating modular homepage');
+
+	const homepage = await client.create({
+		_type: 'page',
+		title: 'Homepage',
+		slug: {
+			current: 'homepage',
+		},
+		components: [
+			{
+				_key: 'hero',
+				_type: 'fullWidthHeroCarousel',
+				slides: [
+					{
+						_key: 'heroSlide1',
+						_type: 'slide',
+						subtitle: 'New',
+						title: 'Sprout Launch Collection',
+						cta: [
+							{
+								_key: 'heroCta1',
+								_type: 'productLink',
+								productLanding: {
+									_ref: tShirtProduct._id,
+									_type: 'reference',
+								},
+								title: 'Shop',
+							},
+						],
+						background: [
+							{
+								_key: 'heroBackground1',
+								_type: 'backgroundImage',
+								image: {
+									_type: 'image',
+									asset: {
+										_type: 'reference',
+										_ref: heroAsset._id,
+									},
+								},
+							},
+						],
+					},
+
+					{
+						_key: 'heroSlide2',
+						_type: 'slide',
+						subtitle: 'New',
+						title: 'Slide Number Two',
+						cta: [
+							{
+								_key: 'heroCta1',
+								_type: 'productLink',
+								productLanding: {
+									_ref: tShirtProduct._id,
+									_type: 'reference',
+								},
+								title: 'Shop',
+							},
+						],
+						background: [
+							{
+								_key: 'heroBackground1',
+								_type: 'backgroundImage',
+								image: {
+									_type: 'image',
+									asset: {
+										_type: 'reference',
+										_ref: heroAsset._id,
+									},
+								},
+							},
+						],
+					},
+				],
 			},
 		],
 	});

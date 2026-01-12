@@ -31,6 +31,7 @@ import collection from './types/collection';
 import pageComponentList from './types/pageComponentList';
 import globalComponentList from './types/globalComponentList';
 import iframeEmbed from './types/iframeEmbed';
+import fullWidthHeroCarousel from './types/fullWidthHeroCarousel';
 
 export default [
 	// Types
@@ -66,4 +67,5 @@ export default [
 	pageComponentList,
 	globalComponentList,
 	iframeEmbed,
+	fullWidthHeroCarousel,
 ];

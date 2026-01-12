@@ -27,11 +27,7 @@ export const BackgroundMediaIcon = ({background}) => {
 
 	if (!background) {
 		return <Icon />;
-	} else if (
-		background._type === 'backgroundImage' &&
-		background.image &&
-		background.image.asset
-	) {
+	} else if (background._type === 'backgroundImage' && background.image) {
 		return (
 			<img
 				style={{

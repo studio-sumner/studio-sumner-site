@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from './Link';
 import useKlaviyo from '../hooks/useKlaviyo';
+import FooterNewsletterForm from './FooterNewsletterForm';
 
 export default function Footer({
 	footerColumns = [],
@@ -50,6 +51,13 @@ export default function Footer({
 					</ul>
 				</div>
 			))}
+			<div className="col-span-6 md:col-span-4 md:col-start-9">
+				<FooterNewsletterForm
+					title={newsletterTitle}
+					klaviyoListId={klaviyoListId}
+					klaviyoSourceId={klaviyoSourceId}
+				/>
+			</div>
 		</div>
 	);
 

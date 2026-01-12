@@ -6,14 +6,13 @@ import ease from '../config/ease';
 import BlockContent from '@sanity/block-content-to-react';
 import richText from '../serializers/richText';
 
-export default function FooterNewsletterForm({
-	title,
-	description = [],
-	inputPlaceholder,
-	successMessage,
+const FooterNewsletterForm = ({
+	title = 'Newsletter',
+	inputPlaceholder = 'Email',
+	successMessage = 'Thanks!',
 	klaviyoListId,
 	klaviyoSourceId,
-}) {
+}) => {
 	const {
 		formProps,
 		inputProps,
@@ -38,72 +37,34 @@ export default function FooterNewsletterForm({
 	const newsletterForm = (
 		<form {...formProps}>
 			<div className="flex justify-between border-b border-solid">
-				<div className="flex-grow">
+				<div className="grow">
 					<input
 						{...inputProps}
-						className={cx(
-							'block w-full py-half text-sans-12-caps uppercase tracking-wider',
-							{
-								loading: isSubmitting,
-							},
-						)}
+						className={cx('block w-full py-half', {
+							loading: isSubmitting,
+						})}
 						placeholder={inputPlaceholder}
 					/>
 				</div>
 				<button
 					type="submit"
 					disabled={isSubmitting}
-					className={cx(
-						'block py-half link-opacity-hover text-sans-12-caps uppercase tracking-wider',
-						{
-							loading: isSubmitting,
-						},
-					)}>
+					className={cx('block py-half link-opacity-hover', {
+						loading: isSubmitting,
+					})}>
 					Submit
 				</button>
 			</div>
 		</form>
 	);
 
-	const successRow = <div className="tracking-wide">{successMessage}</div>;
-
-	const captionRow = (
-		<div className="min-h-[15px] mt-1">
-			<AnimatePresence mode="wait">
-				{caption && (
-					<motion.div
-						initial={{opacity: 0}}
-						animate={{opacity: 1}}
-						exit={{opacity: 0}}
-						transition={{
-							ease: ease.appear,
-							duration: 400 / 1000,
-						}}>
-						<p className="uppercase tracking-wider text-terracotta">
-							{caption}
-						</p>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</div>
-	);
-
-	const headerRow = (
-		<div className="flex flex-col gap-1 mb-2 md:mb-4">
-			{title && <h3>{title}</h3>}
-			{Boolean(description && description.length) && (
-				<div className="rich-text line-break tracking-wide xl:pr-8">
-					<BlockContent blocks={description} serializers={richText} />
-				</div>
-			)}
-		</div>
-	);
-
 	return (
-		<div>
-			{headerRow}
+		<div className="flex flex-col gap-2">
+			<h3 className="text-12/12 uppercase tracking-wide font-500">
+				{title}
+			</h3>
 
-			<div className="min-h-[60px]">
+			<div className="min-h-3">
 				<AnimatePresence mode="wait">
 					{!isSuccess && (
 						<motion.div
@@ -128,12 +89,26 @@ export default function FooterNewsletterForm({
 								ease: ease.appear,
 								duration: 400 / 1000,
 							}}>
-							{successRow}
+							<p>{successMessage}</p>
 						</motion.div>
 					)}
 				</AnimatePresence>
-				{captionRow}
 			</div>
+
+			{caption && (
+				<motion.div
+					initial={{opacity: 0}}
+					animate={{opacity: 1}}
+					exit={{opacity: 0}}
+					transition={{
+						ease: ease.appear,
+						duration: 400 / 1000,
+					}}>
+					<p>{caption}</p>
+				</motion.div>
+			)}
 		</div>
 	);
-}
+};
+
+export default FooterNewsletterForm;

@@ -8,7 +8,6 @@ export default function BackgroundMedia({
 	video,
 	image,
 	imageMobile,
-	images = [],
 	autoPlay = true,
 	className = 'absolute inset-0',
 }) {
@@ -19,6 +18,10 @@ export default function BackgroundMedia({
 	};
 
 	let content;
+
+	console.log({
+		image,
+	});
 
 	switch (_type) {
 		case 'backgroundImage': {

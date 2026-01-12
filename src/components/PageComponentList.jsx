@@ -9,6 +9,9 @@ const COMPONENTS = {
 	iframeEmbed: dynamic(() => import('./IframeEmbed'), {
 		loading: PageComponentLoader,
 	}),
+	fullWidthHeroCarousel: dynamic(() => import('./FullWidthHeroCarousel'), {
+		loading: PageComponentLoader,
+	}),
 };
 
 const unfurlGlobalComponents = (components = []) =>

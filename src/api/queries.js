@@ -182,11 +182,13 @@ export const components = groq`
 	},
 
 	_type == 'heroFullWidthImage' => {
-		invert,
-		title,
-		subtitle,
-		'cta': cta[0] ${cta},
-		'background': background[0] ${backgroundMedia},
+		slides[] {
+			_key,
+			title,
+			subtitle,
+			'cta': cta[0] ${cta},
+			'background': background[0] ${backgroundMedia},
+		},
 	},
 `;
 
@@ -197,6 +199,16 @@ export const componentList = groq`[]{
 	_type == 'globalComponentList' => {
 		title,
 		'components': @->components[] {${components}}
+	},
+
+	_type == 'fullWidthHeroCarousel' => {
+		slides[] {
+			_key,
+			title,
+			subtitle,
+			'cta': cta[0] ${cta},
+			'background': background[0] ${backgroundMedia},
+		},
 	}
 }`;
 
