@@ -30,7 +30,7 @@ const initializeDataset = async dataset => {
 	// Create initial pages
 	console.log('Creating initial pages');
 
-	const [promoBanner, footer, cart, notFoundPage, homepage, tShirtProduct] =
+	const [promoBanner, cart, notFoundPage, homepage, tShirtProduct] =
 		await Promise.all([
 			client.create({
 				_type: 'promoBanner',
@@ -51,11 +51,6 @@ const initializeDataset = async dataset => {
 						style: 'normal',
 					},
 				],
-			}),
-
-			client.create({
-				_type: 'footer',
-				title: 'Site Footer',
 			}),
 
 			client.create({
@@ -145,6 +140,62 @@ const initializeDataset = async dataset => {
 				url: 'https://gardenernyc.notion.site/Sprout-Documentation-3189ba94a21342d89dd40162491da6f7?source=copy_link',
 			},
 		],
+	});
+
+	const footer = await client.create({
+		_type: 'footer',
+		title: 'Site Footer',
+		footerColumns: [
+			{
+				_key: 'storeColumn',
+				_type: 'footerColumn',
+				title: 'Store',
+				links: [
+					{
+						_key: merchCollection._id,
+						_type: 'collectionLink',
+						collection: {
+							_ref: merchCollection._id,
+							_type: 'reference',
+						},
+						title: 'Shop All',
+					},
+					{
+						_key: tShirtProduct._id,
+						_type: 'productLink',
+						productLanding: {
+							_ref: tShirtProduct._id,
+							_type: 'reference',
+						},
+						title: 'T-Shirt',
+					},
+				],
+			},
+			{
+				_key: 'companyColumn',
+				_type: 'footerColumn',
+				title: 'Company',
+				links: [
+					{
+						_key: 'getSproutLink',
+						_type: 'link',
+						openInNewWindow: true,
+						title: 'About',
+						url: 'https://sprout.store',
+					},
+					{
+						_key: 'documentationLink',
+						_type: 'link',
+						openInNewWindow: true,
+						title: 'Documentation',
+						url: 'https://gardenernyc.notion.site/Sprout-Documentation-3189ba94a21342d89dd40162491da6f7?source=copy_link',
+					},
+				],
+			},
+		],
+		newsletterTitle: 'Newsletter',
+		klaviyoListId: 'YOUR_KLAVIYO_LIST_ID',
+		klaviyoSourceId: 'YOUR_KLAVIYO_SOURCE_ID',
 	});
 
 	const layout = await client.create({

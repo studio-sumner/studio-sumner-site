@@ -362,7 +362,14 @@ export const layout = groq`*[
 		},
 
 		footer-> {
-			links[] ${cta},
+			footerColumns[] {
+				_key,
+				title,
+				links[] ${cta},
+			},
+			newsletterTitle,
+			klaviyoListId,
+			klaviyoSourceId,
 		},
 	},
 }`;
