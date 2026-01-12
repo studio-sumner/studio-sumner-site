@@ -16,6 +16,12 @@ export default {
 			description: 'Only used internally in the CMS',
 			validation: Rule => Rule.required(),
 		},
+
+		{
+			name: 'links',
+			title: 'Links',
+			type: 'ctaList',
+		},
 	],
 	preview: {
 		select: {

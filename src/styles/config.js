@@ -9,6 +9,8 @@ export const SCREENS = {
 	'3xl': 1600,
 };
 
+export const GRID_COLUMNS = 12;
+
 //
 // === Generate Config file ===
 //
@@ -26,6 +28,11 @@ const config = {
 	theme: {
 		screens: SCREENS,
 		containers: SCREENS,
+
+		columns: {
+			auto: 'auto',
+			...generateValues(GRID_COLUMNS, 1, ''),
+		},
 
 		extend: {
 			fontSize: {

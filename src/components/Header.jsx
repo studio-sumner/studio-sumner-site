@@ -1,5 +1,51 @@
 import React from 'react';
+import Link from './Link';
+import useCart from '../hooks/useCart';
 
-export default function Header() {
-	return <header>Header</header>;
+export default function Header({links = []}) {
+	const {lineItemCount, isCartOpen, setCartOpen} = useCart();
+
+	return (
+		<header className="sticky top-0 z-2 bg-white border-b border-solid border-gray-border">
+			<div className="max-w-grid mx-auto">
+				<div className="px-container-mobile md:px-container-desktop">
+					<div className="grid grid-cols-12 items-center gap-x-gutter-mobile md:gap-x-gutter-desktop h-6">
+						<div className="col-span-6 md:col-span-3">
+							<Link url="/" title="Sprout">
+								<img
+									src="/icon-logo-header.svg"
+									alt="Sprout Logo"
+									className="block w-[131px] h-2"
+								/>
+							</Link>
+						</div>
+						<div className="col-span-6 hidden md:block">
+							<ul className="flex justify-center items-center gap-2">
+								{links?.map(link => (
+									<li key={link._key}>
+										<Link
+											{...link}
+											className="link-underline-hover"
+										/>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div className="col-span-6 md:col-span-3">
+							<ul className="flex items-center justify-end gap-2">
+								<li>
+									<button
+										onClick={() =>
+											setCartOpen(!isCartOpen)
+										}>
+										Cart ({lineItemCount})
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	);
 }

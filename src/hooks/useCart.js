@@ -56,21 +56,12 @@ export default () => {
 		isEmpty = lineItemCount <= 0;
 	}
 
-	const {
-		addItemsToCart,
-		updateItemsInCart,
-		updateCartNote,
-		setCartOpen,
-		navigateToCheckout,
-		updateCartCountry,
-	} = useStore(s => ({
-		addItemsToCart: s.addItemsToCart,
-		updateItemsInCart: s.updateItemsInCart,
-		updateCartNote: s.updateCartNote,
-		setCartOpen: s.setCartOpen,
-		updateCartCountry: s.updateCartCountry,
-		navigateToCheckout: s.navigateToCheckout,
-	}));
+	const addItemsToCart = useStore(s => s.addItemsToCart);
+	const updateItemsInCart = useStore(s => s.updateItemsInCart);
+	const updateCartNote = useStore(s => s.updateCartNote);
+	const setCartOpen = useStore(s => s.setCartOpen);
+	const navigateToCheckout = useStore(s => s.navigateToCheckout);
+	const updateCartCountry = useStore(s => s.updateCartCountry);
 
 	return {
 		cart,

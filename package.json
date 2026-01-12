@@ -12,7 +12,7 @@
 		"// MIGRATE //": "",
 		"migrate:production:development": "sanity dataset export production && sanity dataset import production.tar.gz development --replace && rm production.tar.gz",
 		"migrate:development:production": "sanity dataset export development && sanity dataset import development.tar.gz production --replace && rm development.tar.gz",
-		"migrate:cli": "node ./src/migrations/01.cli.js",
+		"migrate:cli": "node ./src/migrations/00.cli.js",
 		"migrate:initialize:production": "yarn migrate:cli initialize_dataset production",
 		"migrate:clear_products": "yarn migrate:cli clear_products",
 		"migrate:clear_variants": "yarn migrate:cli clear_variants"

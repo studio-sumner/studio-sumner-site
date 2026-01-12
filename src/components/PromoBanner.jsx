@@ -12,10 +12,14 @@ export default function PromoBanner({
 	return (
 		<div
 			style={getColorStyle(backgroundColor)}
-			className={cx({
-				'text-white': invertTextColor,
-			})}>
-			<div className="rich-text text-center">
+			className={cx(
+				'px-container-mobile md:px-container-desktop pt-[4px] pb-[2px]',
+				{
+					'text-white bg-black': invertTextColor,
+					'bg-green': !invertTextColor,
+				},
+			)}>
+			<div className="rich-text text-center text-12/12 uppercase font-500">
 				<BlockContent blocks={description} serializers={richText} />
 			</div>
 		</div>

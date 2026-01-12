@@ -351,6 +351,12 @@ export const layout = groq`*[
 	_id == "globalConfig"
 ][0] {
 	layout-> {
+		promoBanner->{
+			description ${richText},
+			backgroundColor-> ${colorStyle},
+			invertTextColor,
+		},
+
 		header-> {
 			links[] ${cta},
 		},
