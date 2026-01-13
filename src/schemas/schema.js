@@ -34,6 +34,7 @@ import iframeEmbed from './types/iframeEmbed';
 import fullWidthHeroCarousel from './types/fullWidthHeroCarousel';
 import productGrid from './types/productGrid';
 import alternatingProductFeatures from './types/alternatingProductFeatures';
+import ticker from './types/ticker';
 
 export default [
 	// Types
@@ -70,6 +71,7 @@ export default [
 	globalComponentList,
 	iframeEmbed,
 	fullWidthHeroCarousel,
-	productGrid,
 	alternatingProductFeatures,
+	productGrid,
+	ticker,
 ];

@@ -85,6 +85,22 @@ const initializeDataset = async dataset => {
 					_ref: tshirtAsset._id,
 				},
 			},
+			description: [
+				{
+					_key: 'descriptionBlock',
+					_type: 'block',
+					children: [
+						{
+							_key: 'descriptionSpan',
+							_type: 'span',
+							marks: [],
+							text: 'Id ullamco aliqua tempor voluptate laborum sint laborum commodo dolore. Esse nostrud deserunt elit ad in reprehenderit.',
+						},
+					],
+					markDefs: [],
+					style: 'normal',
+				},
+			],
 		}),
 	]);
 
@@ -100,8 +116,23 @@ const initializeDataset = async dataset => {
 		products: [
 			{
 				_type: 'reference',
+				_key: `${tShirtProduct._id}-1`,
 				_ref: tShirtProduct._id,
-				_key: tShirtProduct._id,
+			},
+			{
+				_type: 'reference',
+				_key: `${tShirtProduct._id}-2`,
+				_ref: tShirtProduct._id,
+			},
+			{
+				_type: 'reference',
+				_key: `${tShirtProduct._id}-3`,
+				_ref: tShirtProduct._id,
+			},
+			{
+				_type: 'reference',
+				_key: `${tShirtProduct._id}-4`,
+				_ref: tShirtProduct._id,
 			},
 		],
 	});
@@ -176,6 +207,102 @@ const initializeDataset = async dataset => {
 									asset: {
 										_type: 'reference',
 										_ref: heroAsset._id,
+									},
+								},
+							},
+						],
+					},
+				],
+			},
+
+			{
+				_key: 'ticker',
+				_type: 'ticker',
+				description: [
+					{
+						_key: 'descriptionBlock',
+						_type: 'block',
+						children: [
+							{
+								_key: 'descriptionSpan',
+								_type: 'span',
+								marks: [],
+								text: 'Free shipping on orders over $100 with code SPRING2026 ❖',
+							},
+						],
+						markDefs: [],
+						style: 'normal',
+					},
+				],
+			},
+
+			{
+				_key: 'features-section',
+				_type: 'alternatingProductFeatures',
+				features: [
+					{
+						_key: 'feature-1',
+						_type: 'feature',
+						title: 'Product Feature #1',
+						description: [
+							{
+								_key: 'descriptionBlock',
+								_type: 'block',
+								children: [
+									{
+										_key: 'descriptionSpan',
+										_type: 'span',
+										marks: [],
+										text: 'Id ullamco aliqua tempor voluptate laborum sint laborum commodo dolore. Esse nostrud deserunt elit ad in reprehenderit.',
+									},
+								],
+								markDefs: [],
+								style: 'normal',
+							},
+						],
+						media: [
+							{
+								_key: 'mediaImage',
+								_type: 'mediaImage',
+								image: {
+									_type: 'image',
+									asset: {
+										_ref: tshirtAsset._id,
+										_type: 'reference',
+									},
+								},
+							},
+						],
+					},
+					{
+						_key: 'feature-2',
+						_type: 'feature',
+						title: 'Product Feature #2',
+						description: [
+							{
+								_key: 'descriptionBlock',
+								_type: 'block',
+								children: [
+									{
+										_key: 'descriptionSpan',
+										_type: 'span',
+										marks: [],
+										text: 'Id ullamco aliqua tempor voluptate laborum sint laborum commodo dolore. Esse nostrud deserunt elit ad in reprehenderit.',
+									},
+								],
+								markDefs: [],
+								style: 'normal',
+							},
+						],
+						media: [
+							{
+								_key: 'mediaImage',
+								_type: 'mediaImage',
+								image: {
+									_type: 'image',
+									asset: {
+										_ref: tshirtAsset._id,
+										_type: 'reference',
 									},
 								},
 							},

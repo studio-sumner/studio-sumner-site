@@ -26,19 +26,6 @@ const Homepage = ({config = {}, title, seo = {}, components = [], layout}) => {
 		<Fragment>
 			<Seo {...meta} />
 			<PageComponentList components={components} />
-			<div className="p-container-desktop">
-				<a className="link-underline">sup</a>
-				<input type="text" className="input" />
-				<button className="button">Submit</button>
-			</div>
-
-			<div className="grid grid-cols-12 z-10">
-				<div className="col-span-10 col-start-2">sup</div>
-			</div>
-
-			<div className="bg-black text-white rounded-full p-container-mobile text-24/32">
-				Hello
-			</div>
 		</Fragment>
 	);
 };

@@ -9,6 +9,7 @@ export const components = [
 	{type: 'fullWidthHeroCarousel'},
 	{type: 'productGrid'},
 	{type: 'alternatingProductFeatures'},
+	{type: 'ticker'},
 
 	// Utility
 	{type: 'iframeEmbed'},

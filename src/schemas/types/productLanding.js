@@ -3,6 +3,7 @@ import Emoji from 'a11y-react-emoji';
 
 const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🛬" />;
 const DrawerIcon = () => <Emoji style={{fontSize: '2em'}} symbol="▶️" />;
+const WarningIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="⚠️" />;
 
 export default {
 	name: 'productLanding',
@@ -47,6 +48,18 @@ export default {
 			title: 'Static Build',
 			description:
 				'If this is checked, it instructs the server to build a static copy of the page. Use this for high traffic pages and products.',
+			group: 'main',
+		},
+
+		{
+			title: 'Important!',
+			description:
+				'You must sync your Shopify products to Sanity before being able to select them here.',
+			name: 'productNote',
+			type: 'note',
+			options: {
+				tone: 'caution',
+			},
 			group: 'main',
 		},
 

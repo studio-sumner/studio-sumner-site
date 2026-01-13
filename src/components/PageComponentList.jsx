@@ -21,6 +21,9 @@ const COMPONENTS = {
 			loading: PageComponentLoader,
 		},
 	),
+	ticker: dynamic(() => import('./Ticker'), {
+		loading: PageComponentLoader,
+	}),
 };
 
 const unfurlGlobalComponents = (components = []) =>

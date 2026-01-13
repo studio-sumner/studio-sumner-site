@@ -214,6 +214,10 @@ export const components = groq`
 			'media': media[0] ${media},
 		},
 	},
+
+	_type == 'ticker' => {
+		description ${richText},
+	},
 `;
 
 export const componentList = groq`[]{
@@ -298,12 +302,6 @@ export const productLandingItems = groq`
 	images[] ${asset},
 	product-> ${product},
 	description ${richText},
-	variantDropdowns[] {
-		_key,
-		optionTitle,
-		optionType,
-		description ${richText},
-	},
 	components ${componentList},
 	seo ${seo},
 `;

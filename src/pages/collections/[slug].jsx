@@ -8,6 +8,7 @@ import {
 } from '../../api/sanity';
 import mergeMeta from '../../utils/mergeMeta';
 import PageComponentList from '../../components/PageComponentList';
+import ProductGrid from '../../components/ProductGrid';
 import config from '../../../config';
 
 const {siteName} = config;
@@ -48,7 +49,14 @@ export const getStaticProps = async ({params, preview, previewData}) => {
 	};
 };
 
-const Collection = ({config = {}, slug, title, components = [], seo = {}}) => {
+const Collection = ({
+	config = {},
+	slug,
+	title,
+	products = [],
+	components = [],
+	seo = {},
+}) => {
 	//
 	// === Update Meta ===
 	//
@@ -64,7 +72,7 @@ const Collection = ({config = {}, slug, title, components = [], seo = {}}) => {
 	return (
 		<Fragment>
 			<Seo {...meta} />
-			<h1>{title}</h1>
+			<ProductGrid title={title} products={products} />
 			<PageComponentList key={slug} components={components} />
 		</Fragment>
 	);
