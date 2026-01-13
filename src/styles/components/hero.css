@@ -1,19 +1,19 @@
 @layer components {
 	.h-hero {
-		height: 100vh;
-		height: 100svh;
+		height: calc(100vh - 100px);
+		height: calc(100svh - 100px);
 	}
 	.min-h-hero {
-		min-height: 100vh;
-		min-height: 100svh;
+		min-height: calc(100vh - 100px);
+		min-height: calc(100svh - 100px);
 	}
 
 	.h-hero-80 {
-		height: 80vh;
-		height: 80svh;
+		height: calc(80vh - 100px);
+		height: calc(80svh - 100px);
 	}
 	.min-h-hero-80 {
-		min-height: 80vh;
-		min-height: 80svh;
+		min-height: calc(80vh - 100px);
+		min-height: calc(80svh - 100px);
 	}
 }

@@ -12,6 +12,9 @@ const COMPONENTS = {
 	fullWidthHeroCarousel: dynamic(() => import('./FullWidthHeroCarousel'), {
 		loading: PageComponentLoader,
 	}),
+	productGrid: dynamic(() => import('./ProductGrid'), {
+		loading: PageComponentLoader,
+	}),
 };
 
 const unfurlGlobalComponents = (components = []) =>

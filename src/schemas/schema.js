@@ -32,6 +32,7 @@ import pageComponentList from './types/pageComponentList';
 import globalComponentList from './types/globalComponentList';
 import iframeEmbed from './types/iframeEmbed';
 import fullWidthHeroCarousel from './types/fullWidthHeroCarousel';
+import productGrid from './types/productGrid';
 
 export default [
 	// Types
@@ -68,4 +69,5 @@ export default [
 	globalComponentList,
 	iframeEmbed,
 	fullWidthHeroCarousel,
+	productGrid,
 ];

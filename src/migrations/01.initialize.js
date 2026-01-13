@@ -80,8 +80,10 @@ const initializeDataset = async dataset => {
 			},
 			mainImage: {
 				_type: 'image',
-				_ref: tshirtAsset._id,
-				_key: tshirtAsset._id,
+				asset: {
+					_type: 'reference',
+					_ref: tshirtAsset._id,
+				},
 			},
 		}),
 	]);

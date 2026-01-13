@@ -1,8 +1,8 @@
+import useShopifyProduct from '@/plugins/shopify/hooks/useShopifyProduct';
 import centsToPriceNoTrailingZeros from '../utils/centsToPriceNoTrailingZeros';
 import centsToPrice from '../utils/centsToPrice';
 import moneyToPriceNoTrailingZeros from '../utils/moneyToPriceNoTrailingZeros';
 import moneyToPrice from '../utils/moneyToPrice';
-import useShopifyProduct from '../hooks/useShopifyProduct';
 import isNumber from 'lodash/isNumber';
 import useCart from '../hooks/useCart';
 

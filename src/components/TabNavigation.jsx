@@ -74,7 +74,7 @@ export default function TabNavigation({
 		indicator = (
 			<motion.div
 				className={cx(
-					'h-[32px] w-[32px] md:h-4 md:w-4 absolute left-0 top-0 rounded-50 overflow-hidden z-0',
+					'h-4 w-4 absolute left-0 top-0 rounded-50 overflow-hidden z-0',
 					{
 						'bg-white': invert,
 						'bg-black': !invert,

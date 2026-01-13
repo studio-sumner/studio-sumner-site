@@ -2,10 +2,8 @@ import {useState, useEffect} from 'react';
 import {encode, decode} from '../utils/shopifyGid';
 import {fetchProduct} from '../api/shopifyStorefront';
 import find from 'lodash/find';
-import useCart from './useCart';
 
-export default (productId, activeVariantId) => {
-	const {activeCountryId} = useCart();
+export default (productId, activeVariantId, activeCountryId = 'US') => {
 	const [loadingInventory, setLoading] = useState(false);
 	const [shopifyProduct, setShopifyProduct] = useState(null);
 	const [error, setError] = useState(null);
@@ -14,7 +12,7 @@ export default (productId, activeVariantId) => {
 		? find(
 				shopifyProduct.variants,
 				variant => decode(variant.id).id === activeVariantId,
-		  )
+			)
 		: null;
 
 	// Fetch Product

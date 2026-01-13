@@ -5,33 +5,43 @@ import ShopifyPrice from './ShopifyPrice';
 import getVariantPriceRange from '../utils/getVariantPriceRange';
 
 export default function ProductTile({title, slug, mainImage, product}) {
-	const [minVariant] = getVariantPriceRange(product.variants);
+	let minVariant;
+
+	if (product && product.variants && product.variants.length > 0) {
+		[minVariant] = getVariantPriceRange(product.variants);
+	}
 
 	return (
-		<div className="relative flex flex-col gap-2">
-			<Image
-				alt={title}
-				src={{
-					url: mainImage.url,
-					w: 800,
-				}}
-				lqip={mainImage.lqip}
-				className="w-full aspect-square"
-			/>
-			<p>
-				<Link className="link-cover" url={`/products/${slug}`}>
-					{title}
-				</Link>
-			</p>
-			<p>
-				<ShopifyPrice
-					productId={minVariant.productId}
-					variantId={minVariant._id}
-					cents={minVariant.cents}
-					compareAtCents={minVariant.compareAtCents}
-					noTrailingZeros
+		<div className="relative flex flex-col gap-1">
+			<div className="overflow-hidden rounded-20">
+				<Image
+					alt={title}
+					src={{
+						url: mainImage.url,
+						w: 800,
+					}}
+					lqip={mainImage.lqip}
+					className="w-full aspect-square"
 				/>
-			</p>
+			</div>
+			<div className="flex justify-between gap-2">
+				<p>
+					<Link className="link-cover" url={`/products/${slug}`}>
+						{title}
+					</Link>
+				</p>
+				{minVariant && (
+					<p>
+						<ShopifyPrice
+							productId={minVariant.productId}
+							variantId={minVariant._id}
+							cents={minVariant.cents}
+							compareAtCents={minVariant.compareAtCents}
+							noTrailingZeros
+						/>
+					</p>
+				)}
+			</div>
 		</div>
 	);
 }

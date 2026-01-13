@@ -209,7 +209,12 @@ export const componentList = groq`[]{
 			'cta': cta[0] ${cta},
 			'background': background[0] ${backgroundMedia},
 		},
-	}
+	},
+
+	_type == 'productGrid' => {
+		title,
+		products[] -> ${productTile},
+	},
 }`;
 
 //
