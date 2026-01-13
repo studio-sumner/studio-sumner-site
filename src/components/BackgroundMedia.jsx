@@ -1,5 +1,4 @@
 import React, {useRef} from 'react';
-import cx from 'classnames';
 import Image from './Image';
 import Video from './Video';
 
@@ -18,10 +17,6 @@ export default function BackgroundMedia({
 	};
 
 	let content;
-
-	console.log({
-		image,
-	});
 
 	switch (_type) {
 		case 'backgroundImage': {
@@ -53,8 +48,6 @@ export default function BackgroundMedia({
 					src={{
 						url: imageMobile ? imageMobile.url : image.url,
 						w: 800,
-						h: 800,
-						fit: 'crop',
 					}}
 					lqip={imageMobile ? imageMobile.lqip : image.lqip}
 					alt={image.alt}

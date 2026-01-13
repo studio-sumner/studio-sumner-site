@@ -8,6 +8,7 @@ export const components = [
 	// Marketing
 	{type: 'fullWidthHeroCarousel'},
 	{type: 'productGrid'},
+	{type: 'alternatingProductFeatures'},
 
 	// Utility
 	{type: 'iframeEmbed'},

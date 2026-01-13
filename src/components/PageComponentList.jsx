@@ -15,6 +15,12 @@ const COMPONENTS = {
 	productGrid: dynamic(() => import('./ProductGrid'), {
 		loading: PageComponentLoader,
 	}),
+	alternatingProductFeatures: dynamic(
+		() => import('./AlternatingProductFeatures'),
+		{
+			loading: PageComponentLoader,
+		},
+	),
 };
 
 const unfurlGlobalComponents = (components = []) =>

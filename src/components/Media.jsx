@@ -1,42 +1,70 @@
 import React from 'react';
+import cx from 'classnames';
 import Image from './Image';
-import VideoPlayer from './VideoPlayer';
 import imageAspectRatioStyles from '../utils/imageAspectRatioStyles';
+import Video from './Video';
+import {get} from 'lodash';
 
-export const MediaImage = ({image, fullWidth}) => {
-	let sources = [
-		{
-			url: image.url,
-			w: 1200,
-			media: '(min-width: 800px)',
-		},
-		{
-			url: image.url,
-			w: 1000,
-			media: '(min-width: 600px)',
-		},
-	];
+export const MediaImage = ({
+	image,
+	size = 'small',
+	disableAspectRatio,
+	className,
+	...props
+}) => {
+	let sources = [];
 
-	if (fullWidth) {
-		sources = [
-			{
-				url: image.url,
-				w: 2000,
-				media: '(min-width: 1200px)',
-			},
-			{
-				url: image.url,
-				w: 1400,
-				media: '(min-width: 1000px)',
-			},
-			...sources,
-		];
+	switch (size) {
+		case 'medium': {
+			sources = [
+				{
+					url: image.url,
+					w: 1200,
+					media: '(min-width: 800px)',
+				},
+				{
+					url: image.url,
+					w: 1000,
+					media: '(min-width: 600px)',
+				},
+			];
+			break;
+		}
+		case 'large': {
+			sources = [
+				{
+					url: image.url,
+					w: 2000,
+					media: '(min-width: 1200px)',
+				},
+				{
+					url: image.url,
+					w: 1600,
+					media: '(min-width: 1000px)',
+				},
+				{
+					url: image.url,
+					w: 1200,
+					media: '(min-width: 800px)',
+				},
+				{
+					url: image.url,
+					w: 1000,
+					media: '(min-width: 600px)',
+				},
+			];
+			break;
+		}
 	}
+
+	const styles = !disableAspectRatio
+		? imageAspectRatioStyles(image.dimensions.aspectRatio)
+		: {};
 
 	return (
 		<Image
-			className="w-full"
-			style={imageAspectRatioStyles(image.dimensions.aspectRatio)}
+			className={cx('w-full', className)}
+			style={styles}
 			sources={sources}
 			src={{
 				url: image.url,
@@ -44,25 +72,50 @@ export const MediaImage = ({image, fullWidth}) => {
 			}}
 			lqip={image.lqip}
 			alt={image.alt}
+			{...props}
 		/>
 	);
 };
 
-export const MediaVideo = ({video, showControls}) => {
+export const MediaVideo = ({
+	video,
+	showControls,
+	disableAspectRatio,
+	className,
+	...props
+}) => {
+	let videoAspectRatioString = get(video, 'video.asset.data.aspect_ratio');
+	let aspectRatio = 1;
+
+	if (videoAspectRatioString) {
+		const [widthString, heightString] = videoAspectRatioString.split(':');
+		aspectRatio = Number(heightString) / Number(widthString);
+	}
+
+	const styles = !disableAspectRatio
+		? {
+				height: 0,
+				paddingBottom: `${aspectRatio * 100}%`,
+			}
+		: {};
+
 	return (
-		<VideoPlayer
-			video={video.video}
-			showPlay
-			showTimeline={showControls}
-			showVolume={showControls}
-			autoPlay={!showControls}
-			loop={!showControls}
-			muted={!showControls}
-		/>
+		<div className={cx('relative', className)} style={styles}>
+			<Video
+				video={video.video.asset}
+				className="image absolute inset-0"
+				controls={showControls}
+				loop={!showControls}
+				playsInline
+				autoPlay
+				muted
+				lazyOnScroll
+			/>
+		</div>
 	);
 };
 
-export default function Media({_type, ...props}) {
+export default ({_type, ...props}) => {
 	switch (_type) {
 		case 'mediaImage': {
 			return <MediaImage {...props} />;
@@ -74,4 +127,4 @@ export default function Media({_type, ...props}) {
 			return null;
 		}
 	}
-}
+};

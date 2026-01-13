@@ -2,13 +2,13 @@ import React from 'react';
 import Image from './Image';
 import imageAspectRatioStyles from '../utils/imageAspectRatioStyles';
 
-export default function BlockImage({node = {asset: {}}, ...props}) {
-	const {url, metadata, alt, caption} = node.asset;
+export default function BlockImage({value}) {
+	const {url, alt, caption, dimensions, lqip} = value.asset;
 
 	return (
 		<figure className="my-1 flex flex-col gap-1">
 			<Image
-				style={imageAspectRatioStyles(metadata.dimensions.aspectRatio)}
+				style={imageAspectRatioStyles(dimensions.aspectRatio)}
 				alt={alt}
 				sources={[
 					{
@@ -21,7 +21,7 @@ export default function BlockImage({node = {asset: {}}, ...props}) {
 					url: url,
 					w: 800,
 				}}
-				lqip={metadata.lqip}
+				lqip={lqip}
 			/>
 			{caption && <figcaption>{caption}</figcaption>}
 		</figure>

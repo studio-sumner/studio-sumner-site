@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export default function BlockTable({node = {}}) {
-	const {headers = [], rows = []} = node;
+export default function BlockTable({value = {}}) {
+	const {headers = [], rows = []} = value;
 
 	return (
-		<div className="overflow-x-auto scroll-touch pt-[1px] pb-[1px]">
+		<div className="overflow-x-auto scroll-touch pt-px pb-px">
 			<table>
 				<thead>
 					<tr>

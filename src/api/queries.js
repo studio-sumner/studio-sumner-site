@@ -190,16 +190,6 @@ export const components = groq`
 			'background': background[0] ${backgroundMedia},
 		},
 	},
-`;
-
-export const componentList = groq`[]{
-	${components}
-
-	// Unfurl global components into same list
-	_type == 'globalComponentList' => {
-		title,
-		'components': @->components[] {${components}}
-	},
 
 	_type == 'fullWidthHeroCarousel' => {
 		slides[] {
@@ -214,6 +204,25 @@ export const componentList = groq`[]{
 	_type == 'productGrid' => {
 		title,
 		products[] -> ${productTile},
+	},
+
+	_type == 'alternatingProductFeatures' => {
+		features[] {
+			_key,
+			title,
+			description ${richText},
+			'media': media[0] ${media},
+		},
+	},
+`;
+
+export const componentList = groq`[]{
+	${components}
+
+	// Unfurl global components into same list
+	_type == 'globalComponentList' => {
+		title,
+		'components': @->components[] {${components}}
 	},
 }`;
 

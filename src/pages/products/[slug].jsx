@@ -66,20 +66,23 @@ const Product = ({
 
 	const meta = mergeMeta([defaultMeta, fallbackMeta, seo]);
 
-	const schema = {
-		title,
-		sku: product.variants[0].sku,
-		price: `${(product.variants[0].cents / 100).toFixed(2)}`,
-		image: meta.openGraphImage.url,
-		description: meta.metaDescription,
-		slug,
-	};
+	let schema = {};
+
+	if (product && product.variants && product.variants.length > 0) {
+		schema = {
+			title,
+			sku: product.variants[0].sku,
+			price: `${(product.variants[0].cents / 100).toFixed(2)}`,
+			image: meta.openGraphImage.url,
+			description: meta.metaDescription,
+			slug,
+		};
+	}
 
 	return (
 		<Fragment key={slug}>
 			<Seo {...meta} />
-			<ProductSchema {...schema} />
-			<h1>{title}</h1>
+			<ProductSchema {...schema} />;<h1>{title}</h1>
 			<PageComponentList components={components} />
 		</Fragment>
 	);
