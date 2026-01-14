@@ -34,7 +34,7 @@ body {
 	ol,
 	ul,
 	p {
-		@apply mb-24;
+		@apply mb-2;
 
 		&:last-child {
 			margin-bottom: 0;

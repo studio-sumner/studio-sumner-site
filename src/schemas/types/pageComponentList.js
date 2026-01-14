@@ -10,6 +10,7 @@ export const components = [
 	{type: 'productGrid'},
 	{type: 'alternatingProductFeatures'},
 	{type: 'ticker'},
+	{type: 'pageRichText'},
 
 	// Utility
 	{type: 'iframeEmbed'},

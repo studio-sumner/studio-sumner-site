@@ -218,6 +218,11 @@ export const components = groq`
 	_type == 'ticker' => {
 		description ${richText},
 	},
+
+	_type == 'pageRichText' => {
+		title,
+		description ${richText},
+	},
 `;
 
 export const componentList = groq`[]{

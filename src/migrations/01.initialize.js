@@ -25,84 +25,148 @@ const initializeDataset = async dataset => {
 
 	const tshirtPath = path.join(__dirname, 'assets', 'tshirt.jpg');
 	const heroPath = path.join(__dirname, 'assets', 'hero.jpg');
+	const seoPath = path.join(__dirname, 'assets', 'og.png');
 
-	const [tshirtImageBuffer, heroImageBuffer] = await Promise.all([
-		fs.promises.readFile(tshirtPath),
-		fs.promises.readFile(heroPath),
-	]);
+	const [tshirtImageBuffer, heroImageBuffer, seoImageBuffer] =
+		await Promise.all([
+			fs.promises.readFile(tshirtPath),
+			fs.promises.readFile(heroPath),
+			fs.promises.readFile(seoPath),
+		]);
 
-	const [tshirtAsset, heroAsset] = await Promise.all([
+	const [tshirtAsset, heroAsset, seoAsset] = await Promise.all([
 		client.assets.upload('image', tshirtImageBuffer),
 		client.assets.upload('image', heroImageBuffer),
+		client.assets.upload('image', seoImageBuffer),
 	]);
 
 	// Create initial pages
 	console.log('Creating initial pages');
 
-	const [promoBanner, cart, notFoundPage, tShirtProduct] = await Promise.all([
-		client.create({
-			_type: 'promoBanner',
-			title: 'Promo Banner',
-			description: [
-				{
-					_key: 'promoBannerBlock',
-					_type: 'block',
-					children: [
-						{
-							_key: 'promoBannerSpan',
-							_type: 'span',
-							marks: [],
-							text: 'Free shipping on orders over $100',
-						},
-					],
-					markDefs: [],
-					style: 'normal',
-				},
-			],
-		}),
+	const [promoBanner, cart, notFoundPage, tShirtProduct, termsPage] =
+		await Promise.all([
+			client.create({
+				_type: 'promoBanner',
+				title: 'Promo Banner',
+				description: [
+					{
+						_key: 'promoBannerBlock',
+						_type: 'block',
+						children: [
+							{
+								_key: 'promoBannerSpan',
+								_type: 'span',
+								marks: [],
+								text: 'Free shipping on orders over $100',
+							},
+						],
+						markDefs: [],
+						style: 'normal',
+					},
+				],
+			}),
 
-		client.create({
-			_type: 'cart',
-			title: 'Cart',
-			drawerTitle: 'Cart',
-		}),
+			client.create({
+				_type: 'cart',
+				title: 'Cart',
+				drawerTitle: 'Cart',
+			}),
 
-		client.create({
-			_type: 'notFound',
-			title: '404',
-		}),
+			client.create({
+				_type: 'notFound',
+				title: '404',
+			}),
 
-		client.create({
-			_type: 'productLanding',
-			title: 'Sprout T-Shirt',
-			slug: {
-				current: 'sprout-t-shirt',
-			},
-			mainImage: {
-				_type: 'image',
-				asset: {
-					_type: 'reference',
-					_ref: tshirtAsset._id,
+			client.create({
+				_type: 'productLanding',
+				title: 'Sprout T-Shirt',
+				slug: {
+					current: 'sprout-t-shirt',
 				},
-			},
-			description: [
-				{
-					_key: 'descriptionBlock',
-					_type: 'block',
-					children: [
-						{
-							_key: 'descriptionSpan',
-							_type: 'span',
-							marks: [],
-							text: 'Id ullamco aliqua tempor voluptate laborum sint laborum commodo dolore. Esse nostrud deserunt elit ad in reprehenderit.',
-						},
-					],
-					markDefs: [],
-					style: 'normal',
+				mainImage: {
+					_type: 'image',
+					asset: {
+						_type: 'reference',
+						_ref: tshirtAsset._id,
+					},
 				},
-			],
-		}),
-	]);
+				description: [
+					{
+						_key: 'descriptionBlock',
+						_type: 'block',
+						children: [
+							{
+								_key: 'descriptionSpan',
+								_type: 'span',
+								marks: [],
+								text: 'Id ullamco aliqua tempor voluptate laborum sint laborum commodo dolore. Esse nostrud deserunt elit ad in reprehenderit.',
+							},
+						],
+						markDefs: [],
+						style: 'normal',
+					},
+				],
+			}),
+
+			client.create({
+				_type: 'page',
+				title: 'Terms of Service',
+				slug: {
+					current: 'terms',
+				},
+				components: [
+					{
+						_key: 'pageRichText',
+						_type: 'pageRichText',
+						title: 'Terms of Service',
+						description: [
+							{
+								_key: 'block-1',
+								_type: 'block',
+								children: [
+									{
+										_key: 'descriptionSpan',
+										_type: 'span',
+										marks: [],
+										text: 'Enim reprehenderit mollit enim voluptate incididunt eu mollit consequat eu ea est enim elit amet labore. Aliquip ut sunt esse esse. Culpa sit adipisicing aliqua sint laboris eu cupidatat labore sunt ea cillum pariatur deserunt eu aute. Proident ullamco officia nisi officia occaecat qui laboris sunt quis.',
+									},
+								],
+								markDefs: [],
+								style: 'normal',
+							},
+							{
+								_key: 'block-2',
+								_type: 'block',
+								children: [
+									{
+										_key: 'descriptionSpan',
+										_type: 'span',
+										marks: [],
+										text: 'Enim reprehenderit mollit enim voluptate incididunt eu mollit consequat eu ea est enim elit amet labore. Aliquip ut sunt esse esse. Culpa sit adipisicing aliqua sint laboris eu cupidatat labore sunt ea cillum pariatur deserunt eu aute. Proident ullamco officia nisi officia occaecat qui laboris sunt quis.',
+									},
+								],
+								markDefs: [],
+								style: 'normal',
+							},
+							{
+								_key: 'block-3',
+								_type: 'block',
+								children: [
+									{
+										_key: 'descriptionSpan',
+										_type: 'span',
+										marks: [],
+										text: 'Enim reprehenderit mollit enim voluptate incididunt eu mollit consequat eu ea est enim elit amet labore. Aliquip ut sunt esse esse. Culpa sit adipisicing aliqua sint laboris eu cupidatat labore sunt ea cillum pariatur deserunt eu aute. Proident ullamco officia nisi officia occaecat qui laboris sunt quis.',
+									},
+								],
+								markDefs: [],
+								style: 'normal',
+							},
+						],
+					},
+				],
+			}),
+		]);
 
 	// Add products to merch collection
 	console.log('Adding products to merch collection');
@@ -454,7 +518,7 @@ const initializeDataset = async dataset => {
 		.commit();
 
 	// Setting up layout and global config
-	console.log('Setting up layout and global config');
+	console.log('Creating header and footer');
 
 	const header = await client.create({
 		_type: 'header',
@@ -539,6 +603,14 @@ const initializeDataset = async dataset => {
 						title: 'Documentation',
 						url: 'https://gardenernyc.notion.site/Sprout-Documentation-3189ba94a21342d89dd40162491da6f7?source=copy_link',
 					},
+					{
+						_key: 'termsLink',
+						_type: 'pageLink',
+						page: {
+							_ref: termsPage._id,
+							_type: 'reference',
+						},
+					},
 				],
 			},
 		],
@@ -546,6 +618,9 @@ const initializeDataset = async dataset => {
 		klaviyoListId: 'YOUR_KLAVIYO_LIST_ID',
 		klaviyoSourceId: 'YOUR_KLAVIYO_SOURCE_ID',
 	});
+
+	// Setting up layout and global config
+	console.log('Setting up layout and global config');
 
 	const layout = await client.create({
 		_type: 'layout',
@@ -596,6 +671,36 @@ const initializeDataset = async dataset => {
 			_type: 'reference',
 			_ref: layout._id,
 			_key: layout._id,
+		},
+
+		seo: {
+			_type: 'seo',
+			initSeo: true,
+
+			metaTitle: 'Sprout',
+			metaDescription:
+				'A battle-tested Next/Sanity boilerplate for building headless Shopify stores and marketing websites.',
+			openGraphTitle: 'Sprout',
+			openGraphDescription:
+				'A battle-tested Next/Sanity boilerplate for building headless Shopify stores and marketing websites.',
+			twitterTitle: 'Sprout',
+			twitterDescription:
+				'A battle-tested Next/Sanity boilerplate for building headless Shopify stores and marketing websites.',
+
+			openGraphImage: {
+				_type: 'image',
+				asset: {
+					_type: 'reference',
+					_ref: seoAsset._id,
+				},
+			},
+			twitterImage: {
+				_type: 'image',
+				asset: {
+					_type: 'reference',
+					_ref: seoAsset._id,
+				},
+			},
 		},
 	});
 

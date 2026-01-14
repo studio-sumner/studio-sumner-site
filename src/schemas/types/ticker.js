@@ -2,7 +2,7 @@ import React from 'react';
 import Emoji from 'a11y-react-emoji';
 import {get} from 'lodash';
 
-const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🎠" />;
+const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🎟️" />;
 
 export default {
 	name: 'ticker',
@@ -24,6 +24,7 @@ export default {
 		},
 		prepare: ({title}) => ({
 			title: get(title, '0.children.0.text') || 'Ticker',
+			media: <Icon />,
 		}),
 	},
 };

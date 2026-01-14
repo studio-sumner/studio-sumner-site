@@ -62,10 +62,12 @@ export default function Footer({
 	);
 
 	return (
-		<footer className="px-container-mobile md:px-container-desktop bg-gray-border mt-4 pt-4 pb-12">
-			<div className="flex flex-col gap-4">
-				{top}
-				{menu}
+		<footer className="bg-gray-border mt-4 pt-4 pb-12">
+			<div className="mx-auto max-w-grid ">
+				<div className="px-container-mobile md:px-container-desktop flex flex-col gap-4">
+					{top}
+					{menu}
+				</div>
 			</div>
 		</footer>
 	);

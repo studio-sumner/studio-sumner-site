@@ -35,6 +35,7 @@ import fullWidthHeroCarousel from './types/fullWidthHeroCarousel';
 import productGrid from './types/productGrid';
 import alternatingProductFeatures from './types/alternatingProductFeatures';
 import ticker from './types/ticker';
+import pageRichText from './types/pageRichText';
 
 export default [
 	// Types
@@ -74,4 +75,5 @@ export default [
 	alternatingProductFeatures,
 	productGrid,
 	ticker,
+	pageRichText,
 ];

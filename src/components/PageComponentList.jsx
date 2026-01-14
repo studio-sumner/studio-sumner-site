@@ -24,6 +24,9 @@ const COMPONENTS = {
 	ticker: dynamic(() => import('./Ticker'), {
 		loading: PageComponentLoader,
 	}),
+	pageRichText: dynamic(() => import('./PageRichText'), {
+		loading: PageComponentLoader,
+	}),
 };
 
 const unfurlGlobalComponents = (components = []) =>
