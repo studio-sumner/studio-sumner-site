@@ -44,8 +44,12 @@ export default function AlternatingProductFeatures({features = []}) {
 	));
 
 	return (
-		<div className="my-4 md:my-8 px-container-desktop md:px-container-desktop">
-			<div className="flex flex-col gap-4">{featureRows}</div>
+		<div className="my-4 md:my-8">
+			<div className="mx-auto max-w-grid">
+				<div className="px-container-desktop md:px-container-desktop">
+					<div className="flex flex-col gap-4">{featureRows}</div>
+				</div>
+			</div>
 		</div>
 	);
 }
