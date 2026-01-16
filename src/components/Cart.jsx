@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from './Link';
+import CartLineItem from './CartLineItem';
 import {m as motion, AnimatePresence} from 'framer-motion';
 import ease from '../config/ease';
 import useCart from '../hooks/useCart';
@@ -29,14 +30,26 @@ export function CartDrawer({emptyStateTitle, emptyStateCta}) {
 	);
 
 	const emptyState = isEmpty && (
-		<div className="grow p-1 flex flex-col items-center justify-center">
-			<p>{emptyStateTitle}</p>
-			{emptyStateCta && <Link {...emptyStateCta} className="block" />}
+		<div className="grow p-1 flex flex-col gap-2 items-center justify-center">
+			<p className="text-center text-24/32">{emptyStateTitle}</p>
+			{emptyStateCta && (
+				<Link
+					{...emptyStateCta}
+					onClick={() => setCartOpen(false)}
+					className="block button button-primary"
+				/>
+			)}
 		</div>
 	);
 
 	const body = !isEmpty && (
-		<div className="p-container-desktop md:p-container-desktop overflow-y-auto scroll-touch" />
+		<div className="grow p-container-desktop md:p-container-desktop overflow-y-auto scroll-touch">
+			<div className="flex flex-col gap-2">
+				{lineItems.map(lineItem => (
+					<CartLineItem key={lineItem.id} {...lineItem} />
+				))}
+			</div>
+		</div>
 	);
 
 	const footer = (
