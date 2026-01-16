@@ -78,6 +78,7 @@ export const variantFields = `
 			}
 		}
 	}
+	quantityAvailable
 `;
 
 export const productById = `query getProductById($id: ID!, $countryCode: CountryCode!) @inContext(country: $countryCode) {

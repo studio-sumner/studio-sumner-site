@@ -1,9 +1,11 @@
 import {useState} from 'react';
-import useShopifyProduct from '../hooks/useShopifyProduct';
+import useShopifyProduct from '@/plugins/shopify/hooks/useShopifyProduct';
 import useCart from '../hooks/useCart';
 import getVariantByOptions from '../utils/getVariantByOptions';
 
-const DEFAULT_OPTIONS = {};
+const DEFAULT_OPTIONS = {
+	lowStockThreshold: 5,
+};
 
 export default (product, OPTIONS = {}) => {
 	const options = {
@@ -40,9 +42,17 @@ export default (product, OPTIONS = {}) => {
 
 	let isSoldOut = false;
 	let isProductSoldOut = false;
+	let isLowStock = false;
+	let quantityAvailable = null;
 
 	if (shopifyVariant) {
 		isSoldOut = !shopifyVariant.available;
+
+		if (shopifyVariant.quantityAvailable) {
+			isLowStock =
+				shopifyVariant.quantityAvailable < options.lowStockThreshold;
+			quantityAvailable = shopifyVariant.quantityAvailable;
+		}
 	}
 
 	if (shopifyProduct) {
@@ -82,7 +92,9 @@ export default (product, OPTIONS = {}) => {
 		isAddingToCart,
 		isUpdatingCart,
 		isSoldOut,
+		isLowStock,
 		isProductSoldOut,
+		quantityAvailable,
 		loadingInventory,
 		shopifyInventoryError,
 		onAddItems,

@@ -8,6 +8,7 @@ import {
 } from '../../api/sanity';
 import PageComponentList from '../../components/PageComponentList';
 import ProductSchema from '../../components/ProductSchema';
+import ProductHero from '../../components/ProductHero';
 import mergeMeta from '../../utils/mergeMeta';
 import config from '../../../config';
 
@@ -49,6 +50,7 @@ export const getStaticProps = async ({params, preview, previewData}) => {
 const Product = ({
 	config = {},
 	title,
+	description = [],
 	slug,
 	mainImage,
 	product,
@@ -68,7 +70,7 @@ const Product = ({
 
 	let schema = {};
 
-	if (product && product.variants && product.variants.length > 0) {
+	if (product?.variants?.length > 0) {
 		schema = {
 			title,
 			sku: product.variants[0].sku,
@@ -79,10 +81,18 @@ const Product = ({
 		};
 	}
 
+	const hero = {
+		title,
+		mainImage,
+		description,
+		product,
+	};
+
 	return (
 		<Fragment key={slug}>
 			<Seo {...meta} />
-			<ProductSchema {...schema} />;<h1>{title}</h1>
+			<ProductSchema {...schema} />
+			<ProductHero {...hero} />
 			<PageComponentList components={components} />
 		</Fragment>
 	);

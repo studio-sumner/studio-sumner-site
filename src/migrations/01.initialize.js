@@ -413,6 +413,26 @@ const initializeDataset = async dataset => {
 		.set({
 			components: [
 				{
+					_key: 'ticker',
+					_type: 'ticker',
+					description: [
+						{
+							_key: 'descriptionBlock',
+							_type: 'block',
+							children: [
+								{
+									_key: 'descriptionSpan',
+									_type: 'span',
+									marks: [],
+									text: 'Free shipping on orders over $100 with code SPRING2026 ❖',
+								},
+							],
+							markDefs: [],
+							style: 'normal',
+						},
+					],
+				},
+				{
 					_key: 'features-section',
 					_type: 'alternatingProductFeatures',
 					features: [
