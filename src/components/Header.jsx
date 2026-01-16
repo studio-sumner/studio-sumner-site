@@ -35,6 +35,7 @@ export default function Header({links = []}) {
 							<ul className="flex items-center justify-end gap-2">
 								<li>
 									<button
+										className='block button'
 										onClick={() =>
 											setCartOpen(!isCartOpen)
 										}>

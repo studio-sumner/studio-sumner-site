@@ -1,7 +1,8 @@
 {
 	"parser": "@babel/eslint-parser",
 	"plugins": [
-		"react"
+		"react",
+		"prettier"
 	],
 	"env": {
 		"node": true,
@@ -9,15 +10,22 @@
 		"es6": true
 	},
 	"parserOptions": {
+		"requireConfigFile": false, 
 		"ecmaFeatures": {
 			"modules": true,
 			"jsx": true
+		},
+		"babelOptions": {
+			"presets": ["@babel/preset-react"]
 		}
 	},
 	"globals": {
 		"import": false
 	},
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"prettier"
+	],
 	"rules": {
 		"comma-dangle": [
 			"off"
@@ -77,6 +85,8 @@
 				}
 			}
 		],
-		"react/jsx-wrap-multilines": 1
+		"react/jsx-wrap-multilines": 1,
+
+		"prettier/prettier": "warn"
 	}
 }
