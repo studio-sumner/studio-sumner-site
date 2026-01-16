@@ -1637,18 +1637,6 @@
   dependencies:
     "@emotion/memoize" "^0.8.1"
 
-"@emotion/is-prop-valid@^0.8.2":
-  version "0.8.8"
-  resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz"
-  integrity sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
-  dependencies:
-    "@emotion/memoize" "0.7.4"
-
-"@emotion/memoize@0.7.4":
-  version "0.7.4"
-  resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
-  integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
-
 "@emotion/memoize@^0.8.1":
   version "0.8.1"
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.8.1.tgz"
@@ -1885,7 +1873,7 @@
   dependencies:
     "@floating-ui/utils" "^0.2.10"
 
-"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.2.7":
+"@floating-ui/dom@^1.0.1":
   version "1.6.3"
   resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.6.3.tgz"
   integrity sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==
@@ -1900,13 +1888,6 @@
   dependencies:
     "@floating-ui/core" "^1.7.3"
     "@floating-ui/utils" "^0.2.10"
-
-"@floating-ui/react-dom@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/@floating-ui/react-dom/-/react-dom-2.0.0.tgz"
-  integrity sha512-Ke0oU3SeuABC2C4OFu2mSAwHIP5WUiV98O9YWoHV4Q5aT6E9k06DV0Khi5uYspR8xmmBk08t8ZDcz3TR3ARkEg==
-  dependencies:
-    "@floating-ui/dom" "^1.2.7"
 
 "@floating-ui/react-dom@^2.1.6":
   version "2.1.6"
@@ -3370,11 +3351,6 @@
     react-color "^2.19.3"
     tinycolor2 "^1.6.0"
 
-"@sanity/color@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.npmjs.org/@sanity/color/-/color-2.2.5.tgz"
-  integrity sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==
-
 "@sanity/color@^3.0.6":
   version "3.0.6"
   resolved "https://registry.npmjs.org/@sanity/color/-/color-3.0.6.tgz"
@@ -3487,11 +3463,6 @@
   version "1.3.10"
   resolved "https://registry.npmjs.org/@sanity/icons/-/icons-1.3.10.tgz"
   integrity sha512-5wVG/vIiGuGrSmq+Bl3PY7XDgQrGv0fyHdJI64FSulnr2wH3NMqZ6C59UFxnrZ93sr7kOt0zQFoNv2lkPBi0Cg==
-
-"@sanity/icons@^2.4.1":
-  version "2.11.8"
-  resolved "https://registry.npmjs.org/@sanity/icons/-/icons-2.11.8.tgz"
-  integrity sha512-C4ViXtk6eyiNTQ5OmxpfmcK6Jw+LLTi9zg9XBUD15DzC4xTHaGW9SVfUa43YtPGs3WC3M0t0K59r0GDjh52HIg==
 
 "@sanity/icons@^3.0.0", "@sanity/icons@^3.5.2", "@sanity/icons@^3.7.0", "@sanity/icons@^3.7.4":
   version "3.7.4"
@@ -3810,18 +3781,6 @@
   dependencies:
     "@sanity/client" "^7.13.2"
     "@sanity/media-library-types" "^1.0.1"
-
-"@sanity/ui@^1.0.14":
-  version "1.9.3"
-  resolved "https://registry.npmjs.org/@sanity/ui/-/ui-1.9.3.tgz"
-  integrity sha512-AdWEVFaK0Snk6xxP0lGPVP3QQYKwzkfGFpFZnL9d6UtWt8yeuS8BMLVAzmXzg14hrqH50ex9nvNl3eq6a0MWiw==
-  dependencies:
-    "@floating-ui/react-dom" "2.0.0"
-    "@sanity/color" "^2.2.5"
-    "@sanity/icons" "^2.4.1"
-    csstype "^3.1.2"
-    framer-motion "^10.16.2"
-    react-refractor "^2.1.7"
 
 "@sanity/ui@^2.1.11", "@sanity/ui@^2.15.2":
   version "2.16.22"
@@ -5455,7 +5414,7 @@ csstype@3.2.3:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.2.3.tgz#ec48c0f3e993e50648c86da559e2610995cf989a"
   integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==
 
-csstype@^3.0.2, csstype@^3.1.2, csstype@^3.1.3:
+csstype@^3.0.2, csstype@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
@@ -6542,15 +6501,6 @@ form-data@^4.0.4, form-data@^4.0.5:
     es-set-tostringtag "^2.1.0"
     hasown "^2.0.2"
     mime-types "^2.1.12"
-
-framer-motion@^10.16.2:
-  version "10.18.0"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-10.18.0.tgz"
-  integrity sha512-oGlDh1Q1XqYPksuTD/usb0I70hq95OUzmL9+6Zd+Hs4XV0oaISBa/UUMSjYiq6m8EUF32132mOJ8xVZS+I0S6w==
-  dependencies:
-    tslib "^2.4.0"
-  optionalDependencies:
-    "@emotion/is-prop-valid" "^0.8.2"
 
 framer-motion@^12.25.0:
   version "12.25.0"
@@ -9323,16 +9273,6 @@ react-redux@^9.2.0:
     "@types/use-sync-external-store" "^0.0.6"
     use-sync-external-store "^1.4.0"
 
-react-refractor@^2.1.7:
-  version "2.1.7"
-  resolved "https://registry.npmjs.org/react-refractor/-/react-refractor-2.1.7.tgz"
-  integrity sha512-avNxSSsnjYg+BKpO8LVCK14KRn5pLZ+8DInMiUEeZPL6hs0SN0zafl3mJIxavGQPKyihqbXqzq4CYNflJQjaaw==
-  dependencies:
-    prop-types "^15.8.1"
-    refractor "^3.6.0"
-    unist-util-filter "^2.0.2"
-    unist-util-visit-parents "^3.0.2"
-
 react-refractor@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-refractor/-/react-refractor-2.2.0.tgz#541c282557253a8775a08036dc7928d20c0070b4"
@@ -9962,13 +9902,13 @@ sanity-plugin-mux-input@^2.12.1:
     type-fest "^4.18.2"
     use-error-boundary "^2.0.6"
 
-sanity-plugin-note-field@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/sanity-plugin-note-field/-/sanity-plugin-note-field-2.0.2.tgz"
-  integrity sha512-Dbjm3FwL50PjDrgY7Sxa3DiR2yMWHm88IzmuGoj2EVY8KIZ0YUfwKc9oqT1l4GzI8jRZZ2ySoMxUOcWUq4BqpA==
+sanity-plugin-note-field@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/sanity-plugin-note-field/-/sanity-plugin-note-field-3.0.0.tgz#db3baa1517ed91951a2c7350e841a58a3886e270"
+  integrity sha512-JsfcDNA0DYktMhxwS5FYbqUR9cVMbIoCMQ4n2x6NghjZ+pWa8/GatZXdPyITasjg5xZWSsR3tTWEdz59rPt8vQ==
   dependencies:
-    "@sanity/incompatible-plugin" "^1.0.4"
-    "@sanity/ui" "^1.0.14"
+    "@sanity/incompatible-plugin" "^1.0.5"
+    "@sanity/ui" "^3.1.11"
     lodash "^4.17.21"
     prop-types "^15.7.2"
 

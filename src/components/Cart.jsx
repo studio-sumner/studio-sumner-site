@@ -1,31 +1,71 @@
 import React from 'react';
+import Link from './Link';
 import {m as motion, AnimatePresence} from 'framer-motion';
 import ease from '../config/ease';
 import useCart from '../hooks/useCart';
+import moneyToPriceNoTrailingZeros from '../utils/moneyToPriceNoTrailingZeros';
 
-export function CartDrawer() {
-	const {setCartOpen} = useCart();
+export function CartDrawer({emptyStateTitle, emptyStateCta}) {
+	const {
+		setCartOpen,
+		subtotalAmount,
+		navigateToCheckout,
+		lineItems = [],
+		isEmpty,
+	} = useCart();
 
 	const header = (
-		<div className="px-container-desktop md:px-container-desktop h-6 flex justify-between items-center">
-			<h2>Cart</h2>
+		<div className="px-container-desktop md:px-container-desktop border-b border-solid border-gray-border">
+			<div className="h-6 flex justify-between items-center">
+				<h2>Cart</h2>
 
-			<button
-				className="block link-underline-hover"
-				onClick={() => setCartOpen(false)}>
-				Close
-			</button>
+				<button
+					className="block link-underline-hover"
+					onClick={() => setCartOpen(false)}>
+					Close
+				</button>
+			</div>
+		</div>
+	);
+
+	const emptyState = isEmpty && (
+		<div className="grow p-1 flex flex-col items-center justify-center">
+			<p>{emptyStateTitle}</p>
+			{emptyStateCta && <Link {...emptyStateCta} className="block" />}
+		</div>
+	);
+
+	const body = !isEmpty && (
+		<div className="p-container-desktop md:p-container-desktop overflow-y-auto scroll-touch" />
+	);
+
+	const footer = (
+		<div className="border-t border-solid border-gray-border">
+			<div className="p-container-desktop md:p-container-desktop flex flex-col gap-2">
+				<div className="flex justify-between">
+					<p>Subtotal</p>
+					<p>{moneyToPriceNoTrailingZeros(subtotalAmount)}</p>
+				</div>
+				<button
+					className="block w-full button button-primary"
+					onClick={navigateToCheckout}>
+					Check Out
+				</button>
+			</div>
 		</div>
 	);
 
 	return (
 		<div className="h-full bg-white flex flex-col justify-between">
 			{header}
+			{emptyState}
+			{body}
+			{footer}
 		</div>
 	);
 }
 
-export default function Cart() {
+export default function Cart({emptyStateTitle, emptyStateCta}) {
 	const {isCartOpen, setCartOpen} = useCart();
 
 	const animatedBackground = isCartOpen && (
@@ -44,7 +84,7 @@ export default function Cart() {
 
 	const animatedCartDrawer = isCartOpen && (
 		<motion.div
-			className="fixed z-10 top-0 right-0 bottom-0 w-full max-w-40"
+			className="fixed z-10 top-0 right-0 bottom-0 w-full md:max-w-40"
 			initial={{x: '100%'}}
 			animate={{x: 0}}
 			exit={{x: '100%'}}
@@ -52,7 +92,10 @@ export default function Cart() {
 				ease: ease.appear,
 				duration: 500 / 1000,
 			}}>
-			<CartDrawer />
+			<CartDrawer
+				emptyStateTitle={emptyStateTitle}
+				emptyStateCta={emptyStateCta}
+			/>
 		</motion.div>
 	);
 

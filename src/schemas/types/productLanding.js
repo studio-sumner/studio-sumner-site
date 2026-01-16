@@ -54,11 +54,12 @@ export default {
 		{
 			title: 'Important!',
 			description:
-				'You must sync your Shopify products to Sanity before being able to select them here.',
+				'You need to sync Shopify products via the webhook for them tos how up here. This is required for cart and checkout to function properly.',
 			name: 'productNote',
 			type: 'note',
 			options: {
 				tone: 'caution',
+				icon: WarningIcon,
 			},
 			group: 'main',
 		},

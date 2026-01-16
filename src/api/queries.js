@@ -386,6 +386,11 @@ export const layout = groq`*[
 			invertTextColor,
 		},
 
+		cart-> {
+			emptyStateTitle,
+			'emptyStateCta': emptyStateCta[0] ${cta},
+		},
+
 		header-> {
 			links[] ${cta},
 		},
