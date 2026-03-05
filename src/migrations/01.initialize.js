@@ -70,6 +70,15 @@ const initializeDataset = async dataset => {
 				_type: 'cart',
 				title: 'Cart',
 				drawerTitle: 'Cart',
+				emptyStateTitle: 'Your cart is empty',
+				emptyStateCta: [
+					{
+						_type: 'link',
+						_key: 'emptyStateCta',
+						title: 'Shop Now',
+						url: '/',
+					},
+				],
 			}),
 
 			client.create({
@@ -662,16 +671,6 @@ const initializeDataset = async dataset => {
 			_type: 'reference',
 			_ref: cart._id,
 			_key: cart._id,
-
-			emptyStateTitle: 'Your cart is empty',
-			emptyStateCta: [
-				{
-					_type: 'link',
-					_key: 'emptyStateCta',
-					title: 'Shop Now',
-					url: '/',
-				},
-			],
 		},
 
 		promoBanner: {
