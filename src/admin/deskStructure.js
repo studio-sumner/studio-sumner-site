@@ -7,7 +7,6 @@ import {shopifyProductDeskItems} from '../plugins/shopify/deskStructure';
 const PREVIEW_URL = process.env.NEXT_PUBLIC_CMS_PREVIEW_URL;
 const PREVIEW_TOKEN = process.env.NEXT_PUBLIC_CMS_PREVIEW_TOKEN;
 
-const VariantIcon = () => <Emoji style={{fontSize: '2rem'}} symbol="🌷" />;
 const ProductIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🌹" />;
 const GearIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="⚙️" />;
 const ModuleIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🧱" />;
