@@ -84,6 +84,14 @@ const initializeDataset = async dataset => {
 			client.create({
 				_type: 'notFound',
 				title: '404',
+				cta: [
+					{
+						_type: 'link',
+						_key: 'notFoundCta',
+						title: 'Go Home',
+						url: '/',
+					},
+				],
 			}),
 
 			client.create({

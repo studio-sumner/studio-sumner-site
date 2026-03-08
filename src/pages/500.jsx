@@ -23,14 +23,7 @@ export const getStaticProps = async ({params}) => {
 	};
 };
 
-const NotFoundPage = ({
-	config = {},
-	title,
-	description = [],
-	cta,
-	background,
-	seo = {},
-}) => {
+const NotFoundPage = ({config = {}, title, cta, seo = {}}) => {
 	const defaultMeta = config.seo || {};
 
 	const fallbackMeta = {
@@ -44,12 +37,7 @@ const NotFoundPage = ({
 	return (
 		<Fragment>
 			<Seo {...meta} />
-			<NotFound
-				title={title}
-				description={description}
-				cta={cta}
-				background={background}
-			/>
+			<NotFound title={title} cta={cta} />
 		</Fragment>
 	);
 };

@@ -5,17 +5,20 @@ export default function NotFound({title, cta}) {
 	return (
 		<div className="min-h-hero flex flex-col justify-center relative">
 			<div className="px-container-mobile md:px-container-desktop py-4">
-				<div className="grid grid-cols-12 gap-gutter-mobile md:gap-gutter-desktop">
-					<div className="col-span-12 md:col-span-10 md:col-start-2 lg:col-start-2 lg:col-span-6">
-						<div className="flex flex-col gap-2">
-							{title && <h1 className="text-center">{title}</h1>}
-							{cta && (
-								<div className="flex items-center justify-center">
-									<Link {...cta} className="block" />
-								</div>
-							)}
+				<div className="flex flex-col items-center justify-center gap-2">
+					{title && (
+						<h1 className="text-center text-24/32 md:text-36/48 md:tracking-tight">
+							{title}
+						</h1>
+					)}
+					{cta && (
+						<div className="flex items-center justify-center">
+							<Link
+								{...cta}
+								className="block button button-primary"
+							/>
 						</div>
-					</div>
+					)}
 				</div>
 			</div>
 		</div>
