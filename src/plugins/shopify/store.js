@@ -28,7 +28,7 @@ export const fetchCart = (set, get, config) => async () => {
 	try {
 		const cart = await Shopify.fetchCart(
 			cartId,
-			activeCountryId || DEFAULT_COUNTRY_ID,
+			activeCountryId || config.defaultCountryId,
 		);
 
 		if (cart) {
