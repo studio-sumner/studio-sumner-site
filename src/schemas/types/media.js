@@ -15,7 +15,12 @@ export const MediaIcon = ({media}) => {
 	const [videoAsset, setVideoAsset] = useState(null);
 
 	useEffect(() => {
-		if (media && media._type === 'mediaVideo') {
+		if (
+			media &&
+			media._type === 'mediaVideo' &&
+			media.video &&
+			media.video._ref
+		) {
 			client.getDocument(media.video._ref).then(videoDoc => {
 				client.getDocument(videoDoc.video.asset._ref).then(assetDoc => {
 					setVideoAsset(assetDoc);
