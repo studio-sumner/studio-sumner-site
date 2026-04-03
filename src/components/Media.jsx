@@ -103,6 +103,7 @@ export const MediaVideo = ({
 		<div className={cx('relative', className)} style={styles}>
 			<Video
 				video={video.video.asset}
+				altText={video.altText}
 				className="image absolute inset-0"
 				controls={showControls}
 				loop={!showControls}

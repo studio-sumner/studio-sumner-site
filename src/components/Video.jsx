@@ -5,6 +5,7 @@ import HLS from 'hls.js';
 
 const Video = ({
 	video,
+	altText, // Specifically for video
 	poster,
 	posterWidth = 1920,
 	posterFitMode = 'preserve',
@@ -114,6 +115,7 @@ const Video = ({
 				poster={posterImage}
 				className={videoClassName}
 				src={src}
+				aria-label={altText}
 			/>
 		</div>
 	);

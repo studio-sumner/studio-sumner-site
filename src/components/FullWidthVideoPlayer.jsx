@@ -30,6 +30,7 @@ export default function FullWidthVideoPlayer({
 	const videoPlayer = isPlayerVisible && (
 		<Video
 			video={video.video.asset}
+			altText={video.altText}
 			className="image absolute inset-0"
 			playsInline
 			autoPlay

@@ -5,6 +5,7 @@ import Video from './Video';
 export default function BackgroundMedia({
 	_type,
 	video,
+	altText, // For video specifically
 	image,
 	imageMobile,
 	autoPlay = true,
@@ -60,6 +61,7 @@ export default function BackgroundMedia({
 			content = (
 				<Video
 					video={video.asset}
+					altText={altText}
 					className="image absolute inset-0"
 					playsInline
 					loop

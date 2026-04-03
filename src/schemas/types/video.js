@@ -36,6 +36,11 @@ export default {
 			type: 'mux.video',
 			validation: Rule => Rule.required(),
 		},
+		{
+			name: 'altText',
+			title: 'Alt Text',
+			type: 'string',
+		},
 	],
 	preview: {
 		select: {

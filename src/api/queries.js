@@ -68,8 +68,14 @@ export const asset = groq`{
 }`;
 
 export const video = groq`{
-	...,
-	asset->,
+	_id,
+	_type,
+	title,
+	altText,
+	video {
+		...,
+		asset->,
+	}
 }`;
 
 export const colorStyle = groq`{
@@ -99,10 +105,7 @@ export const backgroundMedia = groq`{
 	},
 
 	_type == 'video' => {
-		...(@-> {
-			title,
-			video ${video},
-		}),
+		...(@-> ${video}),
 	},
 }`;
 
@@ -116,10 +119,7 @@ export const media = groq`{
 
 	_type == 'mediaVideo' => {
 		showControls,
-		video-> {
-			title,
-			video ${video},
-		},
+		video-> ${video},
 	},
 }`;
 
