@@ -16,6 +16,7 @@ const Video = ({
 	loadVideo,
 	lazyOnScroll,
 	lazyScrollThreshold = 400,
+	autoPlay,
 	...props
 }) => {
 	const [isVisible, setVisible] = useState(false);
@@ -94,6 +95,13 @@ const Video = ({
 		};
 	}, [videoEl, src]);
 
+	// Autoplay fix
+	useEffect(() => {
+		if (videoEl.current && autoPlay && src) {
+			videoEl.current.play();
+		}
+	}, [videoEl, autoPlay, src]);
+
 	// Capture video ref
 	useEffect(() => {
 		videoRef(videoEl);
@@ -116,6 +124,7 @@ const Video = ({
 				className={videoClassName}
 				src={src}
 				aria-label={altText}
+				autoPlay={autoPlay}
 			/>
 		</div>
 	);
