@@ -97,9 +97,13 @@ const Video = ({
 
 	// Autoplay fix
 	useEffect(() => {
-		if (videoEl.current && autoPlay && src) {
-			videoEl.current.play();
-		}
+		const playVideo = async () => {
+			if (videoEl.current && autoPlay && src) {
+				await videoEl.current.play();
+			}
+		};
+
+		playVideo();
 	}, [videoEl, autoPlay, src]);
 
 	// Capture video ref
