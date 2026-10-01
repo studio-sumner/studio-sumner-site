@@ -37,17 +37,3 @@ export const getPageBySlug = slug => client.fetch(queries.pageBySlug(slug));
 export const getPageById = id => client.fetch(queries.pageById(id));
 export const getNotFoundPage = () => client.fetch(queries.notFoundPage);
 
-// ECOMMERCE
-// Products
-export const getAllProductLandingSlugs = () =>
-	client.fetch(queries.productLandingSlugs);
-export const getProductLandingBySlug = slug =>
-	client.fetch(queries.productLandingBySlug(slug));
-export const getProductLandingById = id =>
-	client.fetch(queries.productLandingById(id));
-// Collections
-export const getAllCollectionSlugs = () =>
-	client.fetch(queries.collectionSlugs);
-export const getCollectionBySlug = slug =>
-	client.fetch(queries.collectionBySlug(slug));
-export const getCollectionById = id => client.fetch(queries.collectionById(id));

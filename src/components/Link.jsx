@@ -8,8 +8,8 @@ import config from '../../config';
 
 const SCROLL_BUFFER = config.scrollBuffer;
 
-export const LinkChild = ({title, pageName, productName, collectionName}) => (
-	<Fragment>{title || pageName || productName || collectionName}</Fragment>
+export const LinkChild = ({title, pageName}) => (
+	<Fragment>{title || pageName}</Fragment>
 );
 
 export default function Link({
@@ -18,9 +18,7 @@ export default function Link({
 	url,
 	slug,
 	openInNewWindow,
-	productName,
 	pageName,
-	collectionName,
 	editName,
 	children,
 	className,
@@ -36,17 +34,7 @@ export default function Link({
 	let active = false;
 
 	if (enableActive) {
-		if (_type === 'productLink') {
-			href = `/products/${slug}`;
-			if (pathname) {
-				active = pathname.indexOf(href) === 0;
-			}
-		} else if (_type === 'collectionLink') {
-			href = `/collections/${slug}`;
-			if (pathname) {
-				active = pathname.indexOf(href) === 0;
-			}
-		} else if (_type === 'pageLink') {
+		if (_type === 'pageLink') {
 			href = `/${slug}`;
 			if (pathname) {
 				active = href === pathname;
@@ -75,35 +63,7 @@ export default function Link({
 		onClick(event);
 	};
 
-	if (_type === 'collectionLink') {
-		return (
-			<NextLink
-				{...props}
-				onClick={onClickLink}
-				className={cx(className, {active})}
-				title={title || collectionName}
-				target={openInNewWindow ? '_blank' : undefined}
-				rel={openInNewWindow ? 'noopener noreferrer' : undefined}
-				scroll={scroll}
-				href={`/collections/${slug}`}>
-				{children || title || collectionName}
-			</NextLink>
-		);
-	} else if (_type === 'productLink') {
-		return (
-			<NextLink
-				{...props}
-				onClick={onClickLink}
-				className={cx(className, {active})}
-				title={title || productName}
-				target={openInNewWindow ? '_blank' : undefined}
-				rel={openInNewWindow ? 'noopener noreferrer' : undefined}
-				scroll={scroll}
-				href={`/products/${slug}`}>
-				{children || title || productName}
-			</NextLink>
-		);
-	} else if (_type === 'pageLink') {
+	if (_type === 'pageLink') {
 		return (
 			<NextLink
 				{...props}

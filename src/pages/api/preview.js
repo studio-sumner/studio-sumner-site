@@ -28,11 +28,5 @@ export default async (req, res) => {
 
 	if (document._type === 'page') {
 		res.redirect(`/${document.slug.current}`);
-	} else if (document._type === 'productLanding') {
-		// ECOMMERCE
-		res.redirect(`/products/${document.slug.current}`);
-	} else if (document._type === 'collection') {
-		// ECOMMERCE
-		res.redirect(`/collections/${document.slug.current}`);
 	}
 };

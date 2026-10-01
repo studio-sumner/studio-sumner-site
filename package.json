@@ -1,5 +1,5 @@
 {
-	"name": "sprout",
+	"name": "lightswitch-site",
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
@@ -13,9 +13,7 @@
 		"migrate:production:development": "sanity dataset export production && sanity dataset import production.tar.gz development --replace && rm production.tar.gz",
 		"migrate:development:production": "sanity dataset export development && sanity dataset import development.tar.gz production --replace && rm development.tar.gz",
 		"migrate:cli": "node ./src/migrations/00.cli.js",
-		"migrate:initialize:production": "yarn migrate:cli initialize_dataset production",
-		"migrate:clear_products": "yarn migrate:cli clear_products",
-		"migrate:clear_variants": "yarn migrate:cli clear_variants"
+		"migrate:initialize:production": "yarn migrate:cli initialize_dataset production"
 	},
 	"dependencies": {
 		"@babel/eslint-parser": "^7.28.5",
@@ -32,7 +30,6 @@
 		"@sanity/webhook": "^4.0.4",
 		"@tailwindcss/postcss": "^4.1.18",
 		"a11y-react-emoji": "^1.2.0",
-		"algoliasearch": "^5.46.2",
 		"axios": "^1.13.2",
 		"classnames": "^2.2.6",
 		"date-fns": "^4.1.0",
@@ -42,7 +39,6 @@
 		"hls.js": "^1.6.15",
 		"js-cookie": "^3.0.5",
 		"keen-slider": "^6.8.6",
-		"klaviyo-subscribe": "^1.0.0",
 		"lodash": "^4.17.21",
 		"marqy": "^0.0.9",
 		"micro": "^10.0.1",

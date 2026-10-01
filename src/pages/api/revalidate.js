@@ -35,20 +35,6 @@ export default async (req, res) => {
 		const {_type, slug} = data;
 
 		switch (_type) {
-			// ECOMMERCE
-			case 'productLanding':
-				await res.revalidate(`/products/${slug}`);
-				return res.json({
-					message: `Revalidated "${_type}" with slug "${slug}"`,
-				});
-
-			// ECOMMERCE
-			case 'collection':
-				await res.revalidate(`/collections/${slug}`);
-				return res.json({
-					message: `Revalidated "${_type}" with slug "${slug}"`,
-				});
-
 			case 'page':
 				await res.revalidate(`/${slug}`);
 				return res.json({

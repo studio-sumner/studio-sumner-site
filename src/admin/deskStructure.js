@@ -2,12 +2,10 @@ import React from 'react';
 import Emoji from 'a11y-react-emoji';
 import {EditIcon, EyeOpenIcon} from '@sanity/icons';
 import CmsIframePreview from '../components/CmsIframePreview.jsx';
-import {shopifyProductDeskItems} from '../plugins/shopify/deskStructure';
 
 const PREVIEW_URL = process.env.NEXT_PUBLIC_CMS_PREVIEW_URL;
 const PREVIEW_TOKEN = process.env.NEXT_PUBLIC_CMS_PREVIEW_TOKEN;
 
-const ProductIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🌹" />;
 const GearIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="⚙️" />;
 const ModuleIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🧱" />;
 
@@ -63,10 +61,6 @@ export default S => {
 						.title('Footers')
 						.schemaType('footer')
 						.child(S.documentTypeList('footer').title('Footers')),
-					S.listItem()
-						.title('Carts')
-						.schemaType('cart')
-						.child(S.documentTypeList('cart').title('Carts')),
 					S.listItem()
 						.title('404 Pages')
 						.schemaType('notFound')
@@ -124,73 +118,6 @@ export default S => {
 		);
 
 	//
-	// === Collections ===
-	//
-
-	const collectionMenuItem = S.listItem()
-		.title('Collections')
-		.schemaType('collection')
-		.child(
-			S.documentTypeList('collection')
-				.title('Collections')
-				.child(documentId =>
-					S.document()
-						.documentId(documentId)
-						.schemaType('collection')
-						.views([
-							S.view.form().icon(EditIcon),
-							S.view
-								.component(CmsIframePreview)
-								.options({
-									previewURL: PREVIEW_URL,
-									token: PREVIEW_TOKEN,
-								})
-								.title('Draft Preview')
-								.icon(EyeOpenIcon),
-						]),
-				),
-		);
-
-	//
-	// === Products ===
-	//
-
-	const productLandings = S.listItem()
-		.title('Product Landings')
-		.schemaType('productLanding')
-		.child(
-			S.documentTypeList('productLanding')
-				.title('Product Landings')
-				.child(documentId =>
-					S.document()
-						.documentId(documentId)
-						.schemaType('productLanding')
-						.views([
-							S.view.form().icon(EditIcon),
-							S.view
-								.component(CmsIframePreview)
-								.options({
-									previewURL: PREVIEW_URL,
-									token: PREVIEW_TOKEN,
-								})
-								.title('Draft Preview')
-								.icon(EyeOpenIcon),
-						]),
-				),
-		);
-
-	const shopifyDeskItems = shopifyProductDeskItems(S);
-
-	const productMenuItem = S.listItem()
-		.title('Products')
-		.icon(ProductIcon)
-		.child(
-			S.list()
-				.title('Products')
-				.items([productLandings, S.divider(), ...shopifyDeskItems]),
-		);
-
-	//
 	// === Other Document Types ===
 	//
 
@@ -225,11 +152,6 @@ export default S => {
 		pageMenuItem,
 		layouts,
 		modules,
-		S.divider(),
-
-		// ECOMMERCE
-		collectionMenuItem,
-		productMenuItem,
 		S.divider(),
 
 		configParent,

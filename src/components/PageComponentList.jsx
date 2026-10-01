@@ -12,15 +12,6 @@ const COMPONENTS = {
 	fullWidthHeroCarousel: dynamic(() => import('./FullWidthHeroCarousel'), {
 		loading: PageComponentLoader,
 	}),
-	productGrid: dynamic(() => import('./ProductGrid'), {
-		loading: PageComponentLoader,
-	}),
-	alternatingProductFeatures: dynamic(
-		() => import('./AlternatingProductFeatures'),
-		{
-			loading: PageComponentLoader,
-		},
-	),
 	ticker: dynamic(() => import('./Ticker'), {
 		loading: PageComponentLoader,
 	}),

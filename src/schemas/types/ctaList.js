@@ -11,20 +11,14 @@ export default {
 	of: [
 		{type: 'link'},
 		{type: 'pageLink'},
-
-		// ECOMMERCE
-		{type: 'productLink'},
-		{type: 'collectionLink'},
 	],
 	preview: {
 		select: {
 			title: '0.title',
-			collectionTitle: '0.collection.title',
-			productTitle: '0.productLanding.title',
 			pageTitle: '0.page.title',
 		},
-		prepare: ({title, pageTitle, productTitle, collectionTitle}) => ({
-			title: title || pageTitle || productTitle || collectionTitle,
+		prepare: ({title, pageTitle}) => ({
+			title: title || pageTitle,
 		}),
 	},
 };

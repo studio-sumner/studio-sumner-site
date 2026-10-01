@@ -24,28 +24,12 @@ const pagesQuery = groq`*[
  	seo.hideFromSitemap != true
 ].slug.current`;
 
-// ECOMMERCE
-const productsQuery = groq`*[
-	_type == "productLanding" &&
-	!(_id in path("drafts.**")) &&
-	seo.hideFromSitemap != true
-].slug.current`;
-const collectionsQuery = groq`*[
-	_type == "collection" &&
-	!(_id in path("drafts.**")) &&
-	seo.hideFromSitemap != true
-].slug.current`;
-
 //
 // === BUILD ===
 //
 
 export default async (req, res) => {
-	const [pages, products, collections] = await Promise.all([
-		client.fetch(pagesQuery),
-		client.fetch(productsQuery),
-		client.fetch(collectionsQuery),
-	]);
+	const pages = await client.fetch(pagesQuery);
 
 	const homepageLocation = `<url><loc>${SITE_ROOT}</loc></url>`;
 
@@ -53,20 +37,10 @@ export default async (req, res) => {
 		slug => `<url><loc>${SITE_ROOT}/${slug}</loc></url>`,
 	);
 
-	// ECOMMERCE
-	const productLocations = products.map(
-		slug => `<url><loc>${SITE_ROOT}/products/${slug}</loc></url>`,
-	);
-	const collectionLocations = collections.map(
-		slug => `<url><loc>${SITE_ROOT}/collections/${slug}</loc></url>`,
-	);
-
 	res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?>
 		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 			${homepageLocation}
 			${pageLocations.join('\n')}
-			${collectionLocations.join('\n')}
-			${productLocations.join('\n')}
 		</urlset>
 	`);
 };

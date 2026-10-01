@@ -1,10 +1,7 @@
 import React from 'react';
 import Link from './Link';
-import useCart from '../hooks/useCart';
 
 export default function Header({links = []}) {
-	const {lineItemCount, isCartOpen, setCartOpen} = useCart();
-
 	return (
 		<header className="sticky top-0 z-2 bg-white border-b border-solid border-gray-border">
 			<div className="max-w-grid mx-auto">
@@ -32,17 +29,6 @@ export default function Header({links = []}) {
 							</ul>
 						</div>
 						<div className="col-span-6 md:col-span-3">
-							<ul className="flex items-center justify-end gap-2">
-								<li>
-									<button
-										className='block button'
-										onClick={() =>
-											setCartOpen(!isCartOpen)
-										}>
-										Cart ({lineItemCount})
-									</button>
-								</li>
-							</ul>
 						</div>
 					</div>
 				</div>

@@ -44,25 +44,6 @@ export default {
 				},
 			],
 		},
-
-		{
-			name: 'newsletterTitle',
-			title: 'Newsletter Title',
-			type: 'string',
-			validation: Rule => Rule.required(),
-		},
-		{
-			name: 'klaviyoListId',
-			title: 'Klaviyo List ID',
-			type: 'string',
-			validation: Rule => Rule.required(),
-		},
-		{
-			name: 'klaviyoSourceId',
-			title: 'Klaviyo Source ID',
-			type: 'string',
-			validation: Rule => Rule.required(),
-		},
 	],
 	preview: {
 		select: {

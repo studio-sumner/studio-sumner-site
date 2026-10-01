@@ -3,7 +3,6 @@ import cx from 'classnames';
 import sanityImageUrl from '../utils/sanityImageUrl';
 import isString from 'lodash/isString';
 import useScrollIntoView from '../hooks/useScrollIntoView';
-import shopifyImageUrl from '../utils/shopifyImageUrl';
 
 export default function Image({
 	alt,
@@ -37,8 +36,6 @@ export default function Image({
 
 			if (config.srcSet) {
 				srcSet = config.srcSet;
-			} else if (config.type === 'shopifyImage') {
-				srcSet = shopifyImageUrl(source.url, config);
 			} else if (config.url) {
 				srcSet = sanityImageUrl(source.url, config);
 			}
@@ -50,9 +47,6 @@ export default function Image({
 
 	if (isString(src)) {
 		imageUrl = src;
-	} else if (src.type === 'shopifyImage') {
-		const {...config} = src;
-		imageUrl = shopifyImageUrl(src.url, config);
 	} else if (src.url) {
 		const {...config} = src;
 		imageUrl = sanityImageUrl(src.url, config);

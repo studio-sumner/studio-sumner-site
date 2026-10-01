@@ -1,9 +1,5 @@
 import groq from 'groq';
 
-// ECOMMERCE
-import {queries} from '../plugins/shopify';
-const {product} = queries;
-
 //
 // === Components ===
 //
@@ -27,33 +23,9 @@ export const pageLink = groq`{
 	featured,
 }`;
 
-// ECOMMERCE
-export const productLink = groq`{
-	_key,
-	_type,
-	openInNewWindow,
-	title,
-	'productName': productLanding->title,
-	'slug': productLanding->slug.current,
-	featured,
-}`;
-export const collectionLink = groq`{
-	_key,
-	_type,
-	openInNewWindow,
-	title,
-	'collectionName': collection->title,
-	'slug': collection->slug.current,
-	featured,
-}`;
-
 export const cta = groq`{
 	_type == 'link' => ${link},
 	_type == 'pageLink' => ${pageLink},
-
-	// ECOMMERCE
-	_type == 'productLink' => ${productLink},
-	_type == 'collectionLink' => ${collectionLink},
 }`;
 
 export const asset = groq`{
@@ -157,18 +129,6 @@ export const seo = groq`{
 	twitterImage ${asset},
 }`;
 
-export const productTile = groq`{
-	_key,
-	_id,
-	title,
-	'slug': slug.current,
-	'cents': product->cents,
-	mainImage ${asset},
-	product-> ${product},
-	descriptionTile ${richText},
-	productLine,
-}`;
-
 //
 // === Page Components ===
 //
@@ -198,20 +158,6 @@ export const components = groq`
 			subtitle,
 			'cta': cta[0] ${cta},
 			'background': background[0] ${backgroundMedia},
-		},
-	},
-
-	_type == 'productGrid' => {
-		title,
-		products[] -> ${productTile},
-	},
-
-	_type == 'alternatingProductFeatures' => {
-		features[] {
-			_key,
-			title,
-			description ${richText},
-			'media': media[0] ${media},
 		},
 	},
 
@@ -293,76 +239,6 @@ export const pageById = id => groq`*[
 }`;
 
 //
-//
-// ECOMMERCE
-//
-//
-
-export const productLandingItems = groq`
-	_id,
-	_type,
-	title,
-	'slug': slug.current,
-	mainImage ${asset},
-	images[] ${asset},
-	product-> ${product},
-	description ${richText},
-	components ${componentList},
-	seo ${seo},
-`;
-
-export const productLandingSlugs = groq`*[
-	_type == "productLanding" &&
-	staticBuild &&
-	!(_id in path("drafts.**"))
-].slug.current`;
-
-export const productLandingBySlug = slug => groq`*[
-	_type == "productLanding" &&
-	slug.current == "${slug}" &&
-	!(_id in path("drafts.**"))
-][0] {
-	${productLandingItems}
-}`;
-
-export const productLandingById = id => groq`*[
-	_type == "productLanding" &&
-	_id == "${id}"
-][0] {
-	${productLandingItems}
-}`;
-
-export const collectionItems = groq`
-	_id,
-	_type,
-	title,
-	'slug': slug.current,
-	products[] -> ${productTile},
-	components ${componentList},
-`;
-
-export const collectionSlugs = groq`*[
-	_type == "collection" &&
-	staticBuild &&
-	!(_id in path("drafts.**"))
-].slug.current`;
-
-export const collectionBySlug = slug => groq`*[
-	_type == "collection" &&
-	slug.current == "${slug}" &&
-	!(_id in path("drafts.**"))
-][0] {
-	${collectionItems}
-}`;
-
-export const collectionById = id => groq`*[
-	_type == "collection" &&
-	_id == "${id}"
-][0] {
-	${collectionItems}
-}`;
-
-//
 // === Globals ===
 //
 
@@ -386,11 +262,6 @@ export const layout = groq`*[
 			invertTextColor,
 		},
 
-		cart-> {
-			emptyStateTitle,
-			'emptyStateCta': emptyStateCta[0] ${cta},
-		},
-
 		header-> {
 			links[] ${cta},
 		},
@@ -401,9 +272,6 @@ export const layout = groq`*[
 				title,
 				links[] ${cta},
 			},
-			newsletterTitle,
-			klaviyoListId,
-			klaviyoSourceId,
 		},
 	},
 }`;

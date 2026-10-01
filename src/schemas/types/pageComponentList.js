@@ -7,8 +7,6 @@ const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🚧" />;
 export const components = [
 	// Marketing
 	{type: 'fullWidthHeroCarousel'},
-	{type: 'productGrid'},
-	{type: 'alternatingProductFeatures'},
 	{type: 'ticker'},
 	{type: 'pageRichText'},
 

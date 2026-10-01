@@ -16,8 +16,6 @@ import useLoadingCursor from '../hooks/useLoadingCursor';
 import useScrollRestoration from '../hooks/useScrollRestoration';
 import useRouterAnalytics from '../hooks/useRouterAnalytics';
 import useHashScroll from '../hooks/useHashScroll';
-import dynamic from 'next/dynamic';
-const Cart = dynamic(() => import('../components/Cart'));
 
 const SCROLL_BUFFER = 60 + 20; // height + pad
 
@@ -46,20 +44,13 @@ if (isBrowser) {
 }
 
 const App = ({Component, pageProps, router}) => {
-	const hydrateCart = useStore(s => s.hydrateCart);
 	const hydratePassword = useStore(s => s.hydratePassword);
 	const hydrateCookies = useStore(s => s.hydrateCookies);
-	const hydrateActiveCountryId = useStore(s => s.hydrateActiveCountryId);
-	const hydrateAvailableCountries = useStore(
-		s => s.hydrateAvailableCountries,
-	);
 	const completePasswordCheck = useStore(s => s.completePasswordCheck);
 	const hasEnteredSitePassword = useStore(s => s.hasEnteredSitePassword);
-	const setCartOpen = useStore(s => s.setCartOpen);
-	const setDesktopMenuOpen = useStore(s => s.setDesktopMenuOpen);
 	const setMobileMenuOpen = useStore(s => s.setMobileMenuOpen);
 
-	const {asPath, query} = router;
+	const {asPath} = router;
 	const pathname = asPath.split('?')[0].split('#')[0]; // get pathname without query or hash
 
 	const {
@@ -70,7 +61,7 @@ const App = ({Component, pageProps, router}) => {
 		password,
 	} = pageProps;
 
-	const {header, cart, footer, cookieBanner, promoBanner} = layout;
+	const {header, footer, cookieBanner, promoBanner} = layout;
 
 	const showPasswordProtection = Boolean(
 		enablePassword && !hasEnteredSitePassword,
@@ -84,25 +75,13 @@ const App = ({Component, pageProps, router}) => {
 
 	// Kick off side effects
 	useEffect(() => {
-		hydrateActiveCountryId();
 		hydratePassword();
 		hydrateCookies();
-		hydrateAvailableCountries();
-		hydrateCart();
 	}, []);
-
-	// ECOMMERCE
-	// Open modal via query param
-	useEffect(() => {
-		if (query.cart) {
-			setCartOpen(true);
-		}
-	}, [query]);
 
 	// Close menus when changing routes
 	useEffect(() => {
 		setMobileMenuOpen(false);
-		setCartOpen(false);
 	}, [pathname]);
 
 	// Site credit on load
@@ -145,14 +124,10 @@ const App = ({Component, pageProps, router}) => {
 		</AnimatePresence>
 	);
 
-	// ECOMMERCE
-	const cartDrawer = <Cart {...cart} />;
-
 	const siteFragment = !showPasswordProtection && (
 		<FramerMotionConfig>
 			{promoBannerRibbon}
 			<Header {...header} />
-			{cartDrawer}
 			{cookieBannerRibbon}
 			{animatedLayout}
 		</FramerMotionConfig>

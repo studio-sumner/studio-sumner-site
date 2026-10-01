@@ -8,9 +8,6 @@ import {vercelDeployTool} from 'sanity-plugin-vercel-deploy';
 import {visionTool} from '@sanity/vision';
 import {noteField} from 'sanity-plugin-note-field';
 
-// ECOMM
-import {shopify} from './src/plugins/shopify';
-
 import schemaTypes from './src/schemas/schema';
 import {media, mediaAssetSource} from 'sanity-plugin-media';
 import {muxInput} from 'sanity-plugin-mux-input';
@@ -21,14 +18,12 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
 export default defineConfig({
-	name: 'sprout',
-	title: 'Sprout',
+	name: 'lightswitch',
+	title: 'Lightswitch',
 	basePath: '/admin',
 	projectId,
 	dataset,
 	plugins: [
-		// ECOMM
-		shopify(),
 		structureTool({structure: deskStructure}),
 
 		media(),

@@ -47,15 +47,6 @@ export default {
 			validation: Rule => Rule.required(),
 		},
 
-		// ECOMMERCE
-		{
-			name: 'cart',
-			title: 'Cart',
-			type: 'reference',
-			to: [{type: 'cart'}],
-			validation: Rule => Rule.required(),
-		},
-
 		{
 			name: 'cookieBanner',
 			title: 'Cookie Banner',
