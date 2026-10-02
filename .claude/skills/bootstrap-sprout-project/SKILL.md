@@ -153,7 +153,7 @@ if it isn't clear from the brief.
 Sprout ships with Shopify, cart, product/collection pages, Klaviyo newsletter
 and Algolia search. For marketing sites, remove them before seeding — most
 of it is marked with `// ECOMM` / `// ECOMMERCE` comments. Reference
-implementation: `chrisfromsumner/lightswitch-site`, commit
+implementation: `studio-sumner/lightswitch-site`, commit
 "Remove ecommerce features from Sprout template". In short:
 
 - Delete `src/plugins/shopify`, `src/pages/products`, `src/pages/collections`,
@@ -204,15 +204,15 @@ Confirm `.env.development` is gitignored first — it holds the Sanity API
 token: `git check-ignore -v .env.development`. Then:
 
 ```
-gh repo create <owner>/<project-name> --private --source=. --remote=origin --push
+gh repo create studio-sumner/<project-name> --private --source=. --remote=origin --push
 ```
 
 If `gh` isn't authenticated yet, fall back to creating the repo at
-`github.com/new` in the browser (owner's own account, **Private** visibility
+`github.com/new` in the browser (owner: the `studio-sumner` org, **Private** visibility
 — never Public, these are client repos), then:
 
 ```
-git remote add origin git@github.com:<owner>/<project-name>.git
+git remote add origin git@github.com:studio-sumner/<project-name>.git
 git push -u origin main
 ```
 
