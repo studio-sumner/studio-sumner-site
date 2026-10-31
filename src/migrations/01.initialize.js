@@ -1,8 +1,6 @@
 require('../utils/dot-env');
 
 const {createClient} = require('@sanity/client');
-const fs = require('fs');
-const path = require('path');
 
 const client = createClient({
 	projectId: process.env.SANITY_PROJECT_ID,
@@ -12,85 +10,156 @@ const client = createClient({
 	useCdn: false,
 });
 
+// Copy from the About prototype in Design Studio (christopher/about). Documents have fixed IDs, so
+// running this again resets them to this copy.
+
 const DESCRIPTION =
-	'Preserve what matters locally. Strengthen what benefits from scale.';
+	'Studio Sumner designs brands and websites for new venture capital firms and the companies they invest in. Los Angeles.';
 
-const textBlock = (key, text) => ({
-	_key: key,
-	_type: 'block',
-	children: [{_key: `${key}-span`, _type: 'span', marks: [], text}],
-	markDefs: [],
-	style: 'normal',
-});
+const CLIENTS = [
+	'Bain Capital Crypto',
+	'Bain Capital Ventures',
+	'Category Ventures',
+	'Champion',
+	'Checkmate',
+	'Expedia',
+	'Genesis Capital',
+	'Heretic Ventures',
+	'Practice',
+	'Revenant Capital',
+	'Tonic.xyz',
+	'Tournesol',
+	'True Botanicals',
+	'University of British Columbia',
+	'Zoox',
+];
 
-const placeholderPage = (title, slug) => ({
-	_type: 'page',
-	title,
-	slug: {current: slug},
-	components: [
-		{
-			_key: 'placeholder',
-			_type: 'pageRichText',
-			title,
-			description: [textBlock('placeholder', 'Content coming soon.')],
-		},
-	],
-});
+const SERVICES = [
+	{name: 'Brand', detail: 'Identity, naming, strategy'},
+	{name: 'Websites', detail: 'Design, e-commerce, prototyping'},
+	{name: 'Product', detail: 'Interface design, mobile apps, design systems'},
+	{name: 'Launch', detail: 'Pitch decks, investor communications, campaigns'},
+];
 
-const ref = doc => ({_type: 'reference', _ref: doc._id});
+const ref = _id => ({_type: 'reference', _ref: _id});
 
-const pageLink = (key, page, title) => ({
-	_key: key,
-	_type: 'pageLink',
-	page: ref(page),
-	title,
-});
+const key = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+// A paragraph from runs of text. A run is a string, or [text, {href, openInNewWindow}] for a link.
+const paragraph = (blockKey, runs) => {
+	const markDefs = [];
+	const children = runs.map((run, i) => {
+		const [text, link] = Array.isArray(run) ? run : [run];
+		const marks = [];
+		if (link) {
+			const linkKey = `${blockKey}-link-${i}`;
+			markDefs.push({_key: linkKey, _type: 'link', ...link});
+			marks.push(linkKey);
+		}
+		return {_key: `${blockKey}-span-${i}`, _type: 'span', marks, text};
+	});
+	return {
+		_key: blockKey,
+		_type: 'block',
+		style: 'normal',
+		children,
+		markDefs,
+	};
+};
 
 const initializeDataset = async dataset => {
 	console.log(`Initializing ${dataset} dataset with default values`);
 
-	// Uploading images to sanity
-	console.log('Uploading placeholder hero image');
-
-	const heroImageBuffer = await fs.promises.readFile(
-		path.join(__dirname, 'assets', 'hero.jpg'),
-	);
-	const heroAsset = await client.assets.upload('image', heroImageBuffer);
-
-	// Create pages
 	console.log('Creating pages');
 
-	const [notFoundPage, whoWeAre, partners, careers] = await Promise.all([
-		client.create({
-			_type: 'notFound',
-			title: '404',
-			cta: [{_type: 'link', _key: 'notFoundCta', title: 'Go home', url: '/'}],
-		}),
-		client.create(placeholderPage('Who we are', 'who-we-are')),
-		client.create(placeholderPage('Partner with us', 'partners')),
-		client.create(placeholderPage('Working at Lightswitch', 'careers')),
-	]);
+	await client.createOrReplace({
+		_id: 'notFound',
+		_type: 'notFound',
+		title: 'Page not found',
+		cta: [
+			{
+				_type: 'link',
+				_key: 'notFoundCta',
+				title: 'Back to Studio Sumner',
+				url: '/',
+			},
+		],
+	});
 
-	const homepage = await client.create({
+	await client.createOrReplace({
+		_id: 'page-info',
 		_type: 'page',
-		title: 'Homepage',
-		slug: {current: 'homepage'},
+		title: 'Info',
+		slug: {_type: 'slug', current: 'info'},
 		components: [
 			{
-				_key: 'hero',
-				_type: 'fullWidthHeroCarousel',
-				slides: [
-					{
-						_key: 'heroSlide1',
-						_type: 'slide',
-						title: 'A long-term home for exceptional property management companies.',
-						cta: [pageLink('heroCta1', partners, 'For company owners')],
-						background: [
+				_key: 'statement',
+				_type: 'statement',
+				text: [
+					paragraph('statement', [
+						'I currently lead digital design at ',
+						[
+							'The Digital Stronghold',
 							{
-								_key: 'heroBackground1',
-								_type: 'backgroundImage',
-								image: {_type: 'image', asset: ref(heroAsset)},
+								href: 'https://thedigitalstronghold.com',
+								openInNewWindow: true,
 							},
+						],
+						' and its growing portfolio of brands. Through Sumner, my studio in Los Angeles, I design brands and websites for new venture capital firms and the companies they invest in.',
+					]),
+				],
+			},
+			{
+				_key: 'clientsAndServices',
+				_type: 'clientsAndServices',
+				clientsTitle: 'Selected clients',
+				clients: CLIENTS,
+				servicesTitle: 'Services',
+				services: SERVICES.map(service => ({
+					_key: key(service.name),
+					_type: 'service',
+					...service,
+				})),
+			},
+			{
+				_key: 'details',
+				_type: 'details',
+				items: [
+					{
+						_key: 'about',
+						_type: 'detail',
+						title: 'About',
+						text: [
+							paragraph('about', [
+								'Sumner takes on select projects. Previously embedded with in-house teams across travel, mobility, and retail.',
+							]),
+						],
+					},
+					{
+						_key: 'new-business',
+						_type: 'detail',
+						title: 'New business',
+						text: [
+							paragraph('new-business', [
+								'For projects, email ',
+								[
+									'christopher@wearesumner.com',
+									{
+										href: 'mailto:christopher@wearesumner.com',
+									},
+								],
+								'.',
+							]),
+						],
+					},
+					{
+						_key: 'studio',
+						_type: 'detail',
+						title: 'Studio',
+						text: [
+							paragraph('studio', [
+								'Sumner\nLos Angeles, California',
+							]),
 						],
 					},
 				],
@@ -98,59 +167,58 @@ const initializeDataset = async dataset => {
 		],
 	});
 
-	// Setting up layout and global config
 	console.log('Creating header and footer');
 
-	const header = await client.create({
+	await client.createOrReplace({
+		_id: 'header',
 		_type: 'header',
 		title: 'Site Header',
-		links: [
-			pageLink('whoWeAreLink', whoWeAre),
-			pageLink('partnersLink', partners),
-			pageLink('careersLink', careers),
+		siteTitle: 'Studio Sumner',
+		navItems: [
+			{
+				_key: 'info',
+				_type: 'navItem',
+				title: 'Info',
+				page: ref('page-info'),
+			},
+			{_key: 'work', _type: 'navItem', title: 'Work'},
+			{_key: 'contact', _type: 'navItem', title: 'Contact'},
 		],
 	});
 
-	const footer = await client.create({
+	await client.createOrReplace({
+		_id: 'footer',
 		_type: 'footer',
 		title: 'Site Footer',
-		footerColumns: [
-			{
-				_key: 'companyColumn',
-				_type: 'footerColumn',
-				title: 'Lightswitch',
-				links: [
-					pageLink('whoWeAreLink', whoWeAre),
-					pageLink('partnersLink', partners),
-					pageLink('careersLink', careers),
-				],
-			},
-		],
+		wordmark: 'Studio Sumner',
+		wordmarkMobile: 'Sumner',
+		copyright: '© 2026 Christopher Morben, Studio Sumner.',
 	});
 
 	console.log('Setting up layout and global config');
 
-	const layout = await client.create({
+	await client.createOrReplace({
+		_id: 'layout',
 		_type: 'layout',
 		title: 'Site Layout',
-		header: ref(header),
-		footer: ref(footer),
-		notFoundPage: ref(notFoundPage),
-		homepage: ref(homepage),
+		header: ref('header'),
+		footer: ref('footer'),
+		notFoundPage: ref('notFound'),
+		homepage: ref('page-info'),
 	});
 
-	await client.create({
-		_type: 'globalConfig',
+	await client.createOrReplace({
 		_id: 'globalConfig',
-		layout: ref(layout),
+		_type: 'globalConfig',
+		layout: ref('layout'),
 		seo: {
 			_type: 'seo',
 			initSeo: true,
-			metaTitle: 'Lightswitch',
+			metaTitle: 'Studio Sumner',
 			metaDescription: DESCRIPTION,
-			openGraphTitle: 'Lightswitch',
+			openGraphTitle: 'Studio Sumner',
 			openGraphDescription: DESCRIPTION,
-			twitterTitle: 'Lightswitch',
+			twitterTitle: 'Studio Sumner',
 			twitterDescription: DESCRIPTION,
 		},
 	});

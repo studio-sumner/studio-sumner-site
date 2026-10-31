@@ -1,15 +1,15 @@
+import '@fontsource-variable/lexend-mega';
 import '../styles/main.css';
 
 import React, {useEffect, Fragment} from 'react';
-import FramerMotionConfig from '../components/FramerMotionConfig';
-import {m as motion, AnimatePresence} from 'framer-motion';
-import ease from '../config/ease';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import GridOverlay from '../components/GridOverlay';
 import CookieBanner from '../components/CookieBanner';
 import PromoBanner from '../components/PromoBanner';
 import PasswordScreen from '../components/PasswordScreen';
 import AppLayout from '../layouts/AppLayout';
+import {countComponents} from '../components/PageComponentList';
 import useStore from '../stores/useStore';
 import isBrowser from '../utils/isBrowser';
 import useLoadingCursor from '../hooks/useLoadingCursor';
@@ -17,27 +17,7 @@ import useScrollRestoration from '../hooks/useScrollRestoration';
 import useRouterAnalytics from '../hooks/useRouterAnalytics';
 import useHashScroll from '../hooks/useHashScroll';
 
-const SCROLL_BUFFER = 60 + 20; // height + pad
-
-const ROUTE_VARIANTS = {
-	initial: {
-		opacity: 0,
-	},
-	animate: {
-		opacity: 1,
-		transition: {
-			ease: ease.appear,
-			duration: 400 / 1000,
-		},
-	},
-	exit: {
-		opacity: 0,
-		transition: {
-			ease: ease.appear,
-			duration: 600 / 1000,
-		},
-	},
-};
+const SCROLL_BUFFER = 16;
 
 if (isBrowser) {
 	window.store = useStore;
@@ -59,9 +39,11 @@ const App = ({Component, pageProps, router}) => {
 		layoutProps = {},
 		enablePassword,
 		password,
+		_id: currentPageId,
+		components,
 	} = pageProps;
 
-	const {header, footer, cookieBanner, promoBanner} = layout;
+	const {header, footer, homepageId, cookieBanner, promoBanner} = layout;
 
 	const showPasswordProtection = Boolean(
 		enablePassword && !hasEnteredSitePassword,
@@ -105,32 +87,29 @@ const App = ({Component, pageProps, router}) => {
 
 	const promoBannerRibbon = promoBanner && <PromoBanner {...promoBanner} />;
 
-	const animatedRoutes = (
-		<AnimatePresence mode="wait">
-			<motion.div key={pathname} {...ROUTE_VARIANTS}>
-				<Component {...pageProps} />
-				<Footer {...footer} />
-			</motion.div>
-		</AnimatePresence>
-	);
-
-	const animatedLayout = (
-		<AnimatePresence mode="wait">
-			<motion.div key={layoutTemplate} {...ROUTE_VARIANTS}>
-				<AppLayout layout={layoutTemplate} {...layoutProps}>
-					{animatedRoutes}
-				</AppLayout>
-			</motion.div>
-		</AnimatePresence>
-	);
-
+	// Sections rise in on load, 80ms apart: header, page components, footer.
 	const siteFragment = !showPasswordProtection && (
-		<FramerMotionConfig>
+		<Fragment>
 			{promoBannerRibbon}
-			<Header {...header} />
+			<main
+				key={pathname}
+				className="min-h-screen bg-background px-4 py-4 text-sm text-foreground md:px-6">
+				<Header
+					{...header}
+					homepageId={homepageId}
+					currentPageId={currentPageId}
+				/>
+				<AppLayout layout={layoutTemplate} {...layoutProps}>
+					<Component {...pageProps} />
+				</AppLayout>
+				<Footer
+					{...footer}
+					riseStep={countComponents(components) + 1}
+				/>
+				<GridOverlay />
+			</main>
 			{cookieBannerRibbon}
-			{animatedLayout}
-		</FramerMotionConfig>
+		</Fragment>
 	);
 
 	return (

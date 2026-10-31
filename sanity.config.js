@@ -18,8 +18,8 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
 export default defineConfig({
-	name: 'lightswitch',
-	title: 'Lightswitch',
+	name: 'studio-sumner',
+	title: 'Studio Sumner',
 	basePath: '/admin',
 	projectId,
 	dataset,

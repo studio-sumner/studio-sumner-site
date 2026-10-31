@@ -19,6 +19,7 @@ import media from './types/media';
 import cookieBanner from './types/cookieBanner';
 import promoBanner from './types/promoBanner';
 import drawerGlobal from './types/drawerGlobal';
+import simpleText from './types/simpleText';
 
 // Modules
 import pageComponentList from './types/pageComponentList';
@@ -27,6 +28,9 @@ import iframeEmbed from './types/iframeEmbed';
 import fullWidthHeroCarousel from './types/fullWidthHeroCarousel';
 import ticker from './types/ticker';
 import pageRichText from './types/pageRichText';
+import statement from './types/statement';
+import clientsAndServices from './types/clientsAndServices';
+import details from './types/details';
 
 export default [
 	// Types
@@ -50,6 +54,7 @@ export default [
 	cookieBanner,
 	promoBanner,
 	drawerGlobal,
+	simpleText,
 
 	// Modules
 	pageComponentList,
@@ -58,4 +63,7 @@ export default [
 	fullWidthHeroCarousel,
 	ticker,
 	pageRichText,
+	statement,
+	clientsAndServices,
+	details,
 ];

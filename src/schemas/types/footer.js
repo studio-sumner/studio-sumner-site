@@ -2,7 +2,6 @@ import React from 'react';
 import Emoji from 'a11y-react-emoji';
 
 const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="👟" />;
-const ColumnIcon = () => <Emoji style={{fontSize: '1.5em'}} symbol="▶️" />;
 
 export default {
 	name: 'footer',
@@ -19,30 +18,24 @@ export default {
 		},
 
 		{
-			name: 'footerColumns',
-			title: 'Footer Columns',
-			type: 'array',
-			of: [
-				{
-					name: 'footerColumn',
-					title: 'Footer Column',
-					icon: ColumnIcon,
-					type: 'object',
-					fields: [
-						{
-							name: 'title',
-							title: 'Title',
-							type: 'string',
-							validation: Rule => Rule.required(),
-						},
-						{
-							name: 'links',
-							title: 'Links',
-							type: 'ctaList',
-						},
-					],
-				},
-			],
+			name: 'wordmark',
+			title: 'Wordmark',
+			type: 'string',
+			description:
+				'Large capitals spanning the page from 768px wide. Sized automatically to fit.',
+			validation: Rule => Rule.required(),
+		},
+		{
+			name: 'wordmarkMobile',
+			title: 'Wordmark (Phones)',
+			type: 'string',
+			description: 'A shorter version for screens under 768px.',
+			validation: Rule => Rule.required(),
+		},
+		{
+			name: 'copyright',
+			title: 'Copyright',
+			type: 'string',
 		},
 	],
 	preview: {

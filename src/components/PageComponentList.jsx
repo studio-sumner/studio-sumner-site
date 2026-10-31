@@ -1,23 +1,15 @@
 import React, {Fragment} from 'react';
-import dynamic from 'next/dynamic';
-import PageComponentLoader from './PageComponentLoader';
 import reduce from 'lodash/reduce';
+import Statement from './Statement';
+import ClientsAndServices from './ClientsAndServices';
+import Details from './Details';
 
 const GLOBAL_COMPONENT_LIST_TYPE = 'globalComponentList';
 
 const COMPONENTS = {
-	iframeEmbed: dynamic(() => import('./IframeEmbed'), {
-		loading: PageComponentLoader,
-	}),
-	fullWidthHeroCarousel: dynamic(() => import('./FullWidthHeroCarousel'), {
-		loading: PageComponentLoader,
-	}),
-	ticker: dynamic(() => import('./Ticker'), {
-		loading: PageComponentLoader,
-	}),
-	pageRichText: dynamic(() => import('./PageRichText'), {
-		loading: PageComponentLoader,
-	}),
+	statement: Statement,
+	clientsAndServices: ClientsAndServices,
+	details: Details,
 };
 
 const unfurlGlobalComponents = (components = []) =>
@@ -33,6 +25,10 @@ const unfurlGlobalComponents = (components = []) =>
 		},
 		[],
 	);
+
+// Page components sit between the header and footer; the footer's place in the load stagger follows them.
+export const countComponents = (components = []) =>
+	unfurlGlobalComponents(components).length;
 
 export default function PageComponentList({
 	components = [],

@@ -54,14 +54,6 @@ export default S => {
 							),
 						),
 					S.listItem()
-						.title('Headers')
-						.schemaType('header')
-						.child(S.documentTypeList('header').title('Headers')),
-					S.listItem()
-						.title('Footers')
-						.schemaType('footer')
-						.child(S.documentTypeList('footer').title('Footers')),
-					S.listItem()
 						.title('404 Pages')
 						.schemaType('notFound')
 						.child(
@@ -106,6 +98,17 @@ export default S => {
 				]),
 		);
 
+	// The site has one header and one footer; open them directly.
+	const header = S.documentListItem()
+		.id('header')
+		.title('Header')
+		.schemaType('header');
+
+	const footer = S.documentListItem()
+		.id('footer')
+		.title('Footer')
+		.schemaType('footer');
+
 	const layouts = S.listItem()
 		.title('Layouts')
 		.schemaType('layout')
@@ -148,12 +151,16 @@ export default S => {
 	//
 	// === Structure ===
 	//
-	return S.list().title('Content').items([
-		pageMenuItem,
-		layouts,
-		modules,
-		S.divider(),
+	return S.list()
+		.title('Content')
+		.items([
+			pageMenuItem,
+			header,
+			footer,
+			layouts,
+			modules,
+			S.divider(),
 
-		configParent,
-	]);
+			configParent,
+		]);
 };

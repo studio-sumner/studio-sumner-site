@@ -1,26 +1,28 @@
 import React from 'react';
-import Link from './Link';
+import NextLink from 'next/link';
+import Grid from './Grid';
+import {riseClassName, riseStyle} from '../config/rise';
 
 export default function NotFound({title, cta}) {
+	const href = cta?._type === 'pageLink' ? `/${cta.slug}` : cta?.url;
+
 	return (
-		<div className="min-h-hero flex flex-col justify-center relative">
-			<div className="px-container-mobile md:px-container-desktop py-4">
-				<div className="flex flex-col items-center justify-center gap-2">
-					{title && (
-						<h1 className="text-center text-24/32 md:text-36/48 md:tracking-tight">
-							{title}
-						</h1>
-					)}
-					{cta && (
-						<div className="flex items-center justify-center">
-							<Link
-								{...cta}
-								className="block button button-primary"
-							/>
-						</div>
-					)}
-				</div>
+		<Grid
+			as="section"
+			className={`mt-24 ${riseClassName}`}
+			style={riseStyle(1)}>
+			<div className="col-span-4 tracking-tight md:col-span-8 md:text-2xl">
+				{title && <h1>{title}</h1>}
+				{cta && href && (
+					<p>
+						<NextLink
+							href={href}
+							className="text-accent bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0%_calc(1em/12)] bg-[position:100%_100%] transition-[background-size] hover:bg-[length:100%_calc(1em/12)] hover:bg-[position:0_100%] motion-reduce:transition-none">
+							{cta.title || cta.pageName}
+						</NextLink>
+					</p>
+				)}
 			</div>
-		</div>
+		</Grid>
 	);
 }

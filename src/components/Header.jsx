@@ -1,38 +1,65 @@
 import React from 'react';
-import Link from './Link';
+import NextLink from 'next/link';
+import cx from 'classnames';
+import {SmileyMelting} from '@phosphor-icons/react/dist/ssr';
+import Grid from './Grid';
+import {riseClassName, riseStyle} from '../config/rise';
 
-export default function Header({links = []}) {
+// The item for the current page reads in ink; the rest are muted. Items without a destination are plain text.
+const NavItem = ({title, url, pageId, slug, homepageId, currentPageId}) => {
+	const current = Boolean(pageId) && pageId === currentPageId;
+	const className = current ? undefined : 'text-muted';
+
+	if (pageId) {
+		const href = pageId === homepageId ? '/' : `/${slug}`;
+		return (
+			<NextLink
+				href={href}
+				className={className}
+				aria-current={current ? 'page' : undefined}>
+				{title}
+			</NextLink>
+		);
+	}
+
+	if (url) {
+		return (
+			<a href={url} className={className}>
+				{title}
+			</a>
+		);
+	}
+
+	return <span className={className}>{title}</span>;
+};
+
+export default function Header({
+	siteTitle,
+	navItems = [],
+	homepageId,
+	currentPageId,
+}) {
 	return (
-		<header className="sticky top-0 z-2 bg-white border-b border-solid border-gray-border">
-			<div className="max-w-grid mx-auto">
-				<div className="px-container-mobile md:px-container-desktop">
-					<div className="grid grid-cols-12 items-center gap-x-gutter-mobile md:gap-x-gutter-desktop h-6">
-						<div className="col-span-6 md:col-span-3">
-							<Link url="/" title="Sprout" className="block">
-								<img
-									src="/icon-logo-header.svg"
-									alt="Sprout Logo"
-									className="block w-[131px] h-2"
-								/>
-							</Link>
-						</div>
-						<div className="col-span-6 hidden md:block">
-							<ul className="flex justify-center items-center gap-2">
-								{links?.map(link => (
-									<li key={link._key}>
-										<Link
-											{...link}
-											className="link-underline-hover"
-										/>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div className="col-span-6 md:col-span-3">
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+		<Grid as="header" className={riseClassName} style={riseStyle(0)}>
+			<NextLink
+				href="/"
+				className="col-span-2 flex gap-2 font-bold md:col-span-4">
+				<SmileyMelting aria-hidden="true" className="size-4 shrink-0" />
+				{siteTitle}
+			</NextLink>
+			<nav
+				className={cx(
+					'col-span-2 flex justify-end gap-3 md:col-span-8 md:gap-6 md:font-bold',
+				)}>
+				{navItems?.map(item => (
+					<NavItem
+						key={item._key}
+						{...item}
+						homepageId={homepageId}
+						currentPageId={currentPageId}
+					/>
+				))}
+			</nav>
+		</Grid>
 	);
 }

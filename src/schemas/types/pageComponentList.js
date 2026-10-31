@@ -5,13 +5,10 @@ import AdminPageComponentListField from '../../components/AdminPageComponentList
 const Icon = () => <Emoji style={{fontSize: '1.5em'}} symbol="🚧" />;
 
 export const components = [
-	// Marketing
-	{type: 'fullWidthHeroCarousel'},
-	{type: 'ticker'},
-	{type: 'pageRichText'},
-
-	// Utility
-	{type: 'iframeEmbed'},
+	// About
+	{type: 'statement'},
+	{type: 'clientsAndServices'},
+	{type: 'details'},
 ];
 
 export default {

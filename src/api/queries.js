@@ -169,6 +169,29 @@ export const components = groq`
 		title,
 		description ${richText},
 	},
+
+	_type == 'statement' => {
+		text,
+	},
+
+	_type == 'clientsAndServices' => {
+		clientsTitle,
+		clients,
+		servicesTitle,
+		services[] {
+			_key,
+			name,
+			detail,
+		},
+	},
+
+	_type == 'details' => {
+		items[] {
+			_key,
+			title,
+			text,
+		},
+	},
 `;
 
 export const componentList = groq`[]{
@@ -263,15 +286,22 @@ export const layout = groq`*[
 		},
 
 		header-> {
-			links[] ${cta},
-		},
-
-		footer-> {
-			footerColumns[] {
+			siteTitle,
+			navItems[] {
 				_key,
 				title,
-				links[] ${cta},
+				url,
+				'pageId': page._ref,
+				'slug': page->slug.current,
 			},
+		},
+
+		'homepageId': homepage._ref,
+
+		footer-> {
+			wordmark,
+			wordmarkMobile,
+			copyright,
 		},
 	},
 }`;
