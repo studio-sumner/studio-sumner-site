@@ -10,3 +10,4 @@ yarn-error.log
 next-env.d.ts
 .next
 /data
+.vercel
