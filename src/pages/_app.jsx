@@ -2,6 +2,7 @@ import '@fontsource-variable/lexend-mega';
 import '../styles/main.css';
 
 import React, {useEffect, Fragment} from 'react';
+import {Analytics} from '@vercel/analytics/next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
@@ -116,6 +117,7 @@ const App = ({Component, pageProps, router}) => {
 		<Fragment>
 			{passwordFragment}
 			{siteFragment}
+			<Analytics />
 		</Fragment>
 	);
 };

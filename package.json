@@ -31,6 +31,7 @@
 		"@sanity/vision": "^5.2.0",
 		"@sanity/webhook": "^4.0.4",
 		"@tailwindcss/postcss": "^4.1.18",
+		"@vercel/analytics": "^2.0.1",
 		"a11y-react-emoji": "^1.2.0",
 		"axios": "^1.13.2",
 		"classnames": "^2.2.6",
