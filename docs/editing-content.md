@@ -50,6 +50,12 @@ As you type, Sanity saves a **draft**. The live site doesn't change until you cl
 
 Each document (the Info page, the Header, the Footer) publishes on its own, so if you edit the header and the page, publish both.
 
+## Previewing a draft
+
+To see unpublished changes on the real page, open the Info page in Pages and switch to the **Draft Preview** tab at the top of the editor. It shows the page with your draft in place of the published copy. Preview only covers the page's own content; draft changes to the Header or Footer show once they're published.
+
+Preview mode lasts five minutes, then switches back to the published page. Reopen the Draft Preview tab to see the latest draft again.
+
 ## When changes show up
 
 The live site checks Sanity for new content at most once a minute. After you publish, wait about a minute, then refresh the page; if it still shows the old text, refresh once more, because the first visit after the minute triggers the update. Locally (`yarn start`) changes appear on the next refresh.
