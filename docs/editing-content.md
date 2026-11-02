@@ -54,6 +54,10 @@ Each document (the Info page, the Header, the Footer) publishes on its own, so i
 
 The live site checks Sanity for new content at most once a minute. After you publish, wait about a minute, then refresh the page; if it still shows the old text, refresh once more, because the first visit after the minute triggers the update. Locally (`yarn start`) changes appear on the next refresh.
 
+## Changes to the design or code
+
+Content edits in Sanity never need a deploy. Code changes do: every push to `main` on GitHub deploys the live site automatically, usually within two or three minutes. Pushes to other branches get their own preview address on Vercel.
+
 ## Resetting to the original copy
 
 `yarn migrate:initialize:production` puts back the copy from the original design. It **overwrites** the Info page, header and footer, so only use it if you want to start over.
