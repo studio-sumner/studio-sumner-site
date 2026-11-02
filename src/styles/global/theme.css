@@ -27,8 +27,9 @@
 	/* Modeled on jacquemus.com link underlines. */
 	--default-transition-duration: 300ms;
 	--default-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-	/* Page load: sections fade in and rise 8px; pages stagger them 80ms apart. */
-	--animate-rise: rise 0.6s var(--default-transition-timing-function) both;
+	/* Page load: sections fade in and rise 8px; pages stagger them 80ms apart. Backwards fill hides them
+	   during their delay, then lets go, so finished sections don't stay on their own layers. */
+	--animate-rise: rise 0.6s var(--default-transition-timing-function) backwards;
 
 	@keyframes rise {
 		from {

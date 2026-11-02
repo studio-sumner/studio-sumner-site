@@ -31,6 +31,11 @@
 			transition-timing-function: var(--default-transition-timing-function);
 		}
 
+		/* Kept on its own layer so the blur doesn't switch text rendering as it starts and ends. */
+		main {
+			will-change: filter;
+		}
+
 		:root[data-theme-transition] main {
 			animation: rack-focus 1.2s var(--default-transition-timing-function);
 		}
