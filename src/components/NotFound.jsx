@@ -11,7 +11,7 @@ export default function NotFound({title, cta}) {
 			as="section"
 			className={`mt-24 ${riseClassName}`}
 			style={riseStyle(1)}>
-			<div className="col-span-4 tracking-tight md:col-span-8 md:text-2xl">
+			<div className="col-span-4 tracking-tight md:col-span-8 md:text-2xl lg:col-span-12 lg:text-4xl">
 				{title && <h1>{title}</h1>}
 				{cta && href && (
 					<p>

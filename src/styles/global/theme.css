@@ -6,6 +6,8 @@
 @theme {
 	/* === Breakpoints === */
 	--breakpoint-md: 48rem;
+	/* Desktop: the opening statement grows to 40px across the full width. */
+	--breakpoint-lg: 64rem;
 
 	/* === Font Families === */
 	--font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -21,6 +23,9 @@
 	--text-sm--line-height: 1rem;
 	--text-2xl: 1.5rem;
 	--text-2xl--line-height: 1.875rem;
+	/* The opening statement on desktop. */
+	--text-4xl: 2.5rem;
+	--text-4xl--line-height: 2.75rem;
 	--tracking-tight: -0.01em;
 
 	/* === Motion === */

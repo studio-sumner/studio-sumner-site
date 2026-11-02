@@ -16,6 +16,7 @@ The left-hand menu has **Pages**, **Header** and **Footer**.
 | On the page | In the editor |
 | --- | --- |
 | "Studio Sumner" at the top left | Header → Site Title |
+| The line that replaces it on hover ("For ambitious founders") | Header → Hover Title |
 | The large opening statement | Pages → Info → Components → Statement |
 | Selected clients | Pages → Info → Components → Clients and Services → Clients |
 | Services (Brand, Websites…) | Pages → Info → Components → Clients and Services → Services |

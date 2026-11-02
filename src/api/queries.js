@@ -287,6 +287,7 @@ export const layout = groq`*[
 
 		header-> {
 			siteTitle,
+			hoverTitle,
 			navItems[] {
 				_key,
 				title,

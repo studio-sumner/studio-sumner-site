@@ -26,7 +26,7 @@
 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-	animation-duration: 1.2s;
+	animation-duration: 0.8s;
 	animation-timing-function: var(--default-transition-timing-function);
 }
 
@@ -40,7 +40,7 @@
 }
 
 ::view-transition-group(theme-chip) {
-	animation-duration: 0.6s;
+	animation-duration: 0.4s;
 	animation-timing-function: var(--default-transition-timing-function);
 }
 
@@ -51,7 +51,7 @@
 ::view-transition-new(theme-light),
 ::view-transition-old(theme-dark),
 ::view-transition-new(theme-dark) {
-	animation-duration: 1.2s;
+	animation-duration: 0.8s;
 	animation-timing-function: var(--default-transition-timing-function);
 	mix-blend-mode: plus-lighter;
 }

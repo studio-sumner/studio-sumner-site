@@ -26,6 +26,14 @@ export default {
 		},
 
 		{
+			name: 'hoverTitle',
+			title: 'Hover Title',
+			type: 'string',
+			description:
+				'Replaces the site title while the pointer is over it. Leave empty for no hover effect.',
+		},
+
+		{
 			name: 'navItems',
 			title: 'Navigation',
 			description:

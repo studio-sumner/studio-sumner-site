@@ -174,6 +174,7 @@ const initializeDataset = async dataset => {
 		_type: 'header',
 		title: 'Site Header',
 		siteTitle: 'Studio Sumner',
+		hoverTitle: 'For ambitious founders',
 		navItems: [
 			{
 				_key: 'info',
