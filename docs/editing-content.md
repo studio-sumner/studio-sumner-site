@@ -1,6 +1,6 @@
 # Editing the site
 
-Every word on the Info page lives in Sanity, the content editor built into the site. You change it there; you never need to touch code.
+Every word on the portfolio site lives in Sanity, the content editor built into the site. You change it there; you never need to touch code.
 
 ## Opening the editor
 
