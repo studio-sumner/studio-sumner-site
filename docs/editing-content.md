@@ -62,7 +62,13 @@ The live site checks Sanity for new content at most once a minute. After you pub
 
 ## Changes to the design or code
 
-Content edits in Sanity never need a deploy. Code changes do: every push to `main` on GitHub deploys the live site automatically, usually within two or three minutes. Pushes to other branches get their own preview address on Vercel.
+Content edits in Sanity never need a deploy. Code changes go through staging first:
+
+1. Changes are pushed to the `staging` branch. Vercel builds a preview at https://studio-sumner-site-git-staging-studio-sumner.vercel.app, usually within two or three minutes. The address stays the same, so it can be bookmarked or shared with a client.
+2. Review the preview. The staging preview reads the same published content as the live site.
+3. Once approved, `staging` is merged into `main`, and Vercel deploys the live site automatically.
+
+Nothing is pushed straight to `main`. Previews ask for a Vercel login; to show one to someone without an account, create a shareable link from the deployment's Share button in Vercel.
 
 ## Resetting to the original copy
 
