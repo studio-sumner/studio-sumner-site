@@ -76,7 +76,8 @@ export default function ThemeToggle() {
 
 	return (
 		// Two equal columns, so the grey box moves exactly one column between them. Its own
-		// view-transition name lets it slide while the rest of the page cross-fades.
+		// view-transition name lets it slide while the rest of the page cross-fades; the labels get
+		// names too so they stay drawn above it.
 		<div
 			role="group"
 			aria-label="Colour mode"
@@ -90,14 +91,14 @@ export default function ThemeToggle() {
 				value="light"
 				theme={theme}
 				onSelect={select}
-				className="dark:text-muted"
+				className="[view-transition-name:theme-light] dark:text-muted"
 			/>
 			<Option
 				label="Dark"
 				value="dark"
 				theme={theme}
 				onSelect={select}
-				className="text-muted dark:text-foreground"
+				className="text-muted [view-transition-name:theme-dark] dark:text-foreground"
 			/>
 		</div>
 	);

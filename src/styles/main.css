@@ -44,6 +44,36 @@
 	animation-timing-function: var(--default-transition-timing-function);
 }
 
+/* The grey box and its labels sit above the page snapshot; they fade and blur with it. */
+::view-transition-old(theme-chip),
+::view-transition-new(theme-chip),
+::view-transition-old(theme-light),
+::view-transition-new(theme-light),
+::view-transition-old(theme-dark),
+::view-transition-new(theme-dark) {
+	animation-duration: 1.2s;
+	animation-timing-function: var(--default-transition-timing-function);
+	mix-blend-mode: plus-lighter;
+}
+
+::view-transition-old(theme-chip),
+::view-transition-old(theme-light),
+::view-transition-old(theme-dark) {
+	animation-name: theme-fade-out, rack-focus;
+}
+
+::view-transition-new(theme-chip),
+::view-transition-new(theme-light),
+::view-transition-new(theme-dark) {
+	animation-name: theme-fade-in, rack-focus;
+}
+
+@keyframes theme-fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
 @keyframes theme-fade-in {
 	from {
 		opacity: 0;
