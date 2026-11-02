@@ -4,7 +4,7 @@ The Studio Sumner portfolio site: Next.js with the Sanity editor built in at `/a
 
 - **Editing content:** [docs/editing-content.md](docs/editing-content.md)
 - **Run locally:** `yarn install`, then `yarn start` (http://localhost:3000). Needs `.env.development`; see `.env.example`.
-- **Design source:** the About prototype and Portfolio system in Design Studio (`studio-sumner/design-studio`).
+- **Design source:** the portfolio prototype and Portfolio system in Design Studio (`studio-sumner/design-studio`).
 
 ## Sprout - Headless Website Boilerplate
 
