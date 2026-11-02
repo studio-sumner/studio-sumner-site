@@ -20,22 +20,17 @@ const applyTheme = theme => {
 	document.documentElement.dataset.theme = theme;
 };
 
-// Matches the rack-focus length in main.css.
-const TRANSITION_MS = 1200;
-let transitionTimer;
-
-// Marks <html> for the length of the switch so main.css can fade colours and rack focus.
+// Cross-fades snapshots of the page before and after (styled in main.css), so every colour
+// changes in step. Switches instantly where View Transitions aren't supported or motion is reduced.
 const applyThemeWithTransition = theme => {
-	const root = document.documentElement;
-	clearTimeout(transitionTimer);
-	delete root.dataset.themeTransition;
-	// Reflow so a quick second click restarts the animation.
-	void root.offsetWidth;
-	root.dataset.themeTransition = '';
-	applyTheme(theme);
-	transitionTimer = setTimeout(() => {
-		delete root.dataset.themeTransition;
-	}, TRANSITION_MS);
+	if (
+		!document.startViewTransition ||
+		matchMedia('(prefers-reduced-motion: reduce)').matches
+	) {
+		applyTheme(theme);
+		return;
+	}
+	document.startViewTransition(() => applyTheme(theme));
 };
 
 // Selection is styled with `dark:` so it is right on first paint; aria-pressed follows once mounted.
@@ -44,10 +39,7 @@ const Option = ({label, value, theme, onSelect, className}) => (
 		type="button"
 		aria-pressed={theme ? theme === value : undefined}
 		onClick={() => onSelect(value)}
-		className={cx(
-			'relative cursor-pointer px-1.5 text-xs transition-colors duration-600 motion-reduce:transition-none',
-			className,
-		)}>
+		className={cx('relative cursor-pointer px-1.5 text-xs', className)}>
 		{label}
 	</button>
 );
@@ -83,14 +75,15 @@ export default function ThemeToggle() {
 	};
 
 	return (
-		// Two equal columns, so the grey box slides exactly one column between them.
+		// Two equal columns, so the grey box moves exactly one column between them. Its own
+		// view-transition name lets it slide while the rest of the page cross-fades.
 		<div
 			role="group"
 			aria-label="Colour mode"
 			className="relative grid grid-cols-2">
 			<span
 				aria-hidden="true"
-				className="absolute inset-y-0 left-0 w-1/2 bg-line transition-transform duration-600 motion-reduce:transition-none dark:translate-x-full"
+				className="absolute inset-y-0 left-0 w-1/2 bg-line [view-transition-name:theme-chip] dark:translate-x-full"
 			/>
 			<Option
 				label="Light"

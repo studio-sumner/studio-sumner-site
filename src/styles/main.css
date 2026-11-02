@@ -17,28 +17,36 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
+}
 
-	/*
-	// Switching Light/Dark (ThemeToggle sets data-theme-transition for its length): colours cross-fade
-	// while the page racks out of focus and back. In the base layer so elements with their own
-	// transition utilities, such as the toggle's sliding box, keep them.
-	*/
-	@media (prefers-reduced-motion: no-preference) {
-		:root[data-theme-transition],
-		:root[data-theme-transition] * {
-			transition-property: background-color, color, fill, stroke, border-color;
-			transition-duration: 1.2s;
-			transition-timing-function: var(--default-transition-timing-function);
-		}
+/*
+// Switching Light/Dark (ThemeToggle runs it as a view transition): snapshots of the page before and
+// after cross-fade while it racks out of focus and back, and the toggle's grey box slides across.
+// Animating snapshots keeps every colour in step; fading each element's colour drifted out of sync.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 1.2s;
+	animation-timing-function: var(--default-transition-timing-function);
+}
 
-		/* Kept on its own layer so the blur doesn't switch text rendering as it starts and ends. */
-		main {
-			will-change: filter;
-		}
+/* The old snapshot stays solid underneath, so the fade never shows through to the backdrop. */
+::view-transition-old(root) {
+	animation-name: rack-focus;
+}
 
-		:root[data-theme-transition] main {
-			animation: rack-focus 1.2s var(--default-transition-timing-function);
-		}
+::view-transition-new(root) {
+	animation-name: theme-fade-in, rack-focus;
+}
+
+::view-transition-group(theme-chip) {
+	animation-duration: 0.6s;
+	animation-timing-function: var(--default-transition-timing-function);
+}
+
+@keyframes theme-fade-in {
+	from {
+		opacity: 0;
 	}
 }
 
