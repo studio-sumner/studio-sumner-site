@@ -14,6 +14,9 @@
 		'Lexend Mega Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 	/* === Type === */
+	/* Small control labels only, such as the Light/Dark toggle. */
+	--text-xs: 0.625rem;
+	--text-xs--line-height: 1rem;
 	--text-sm: 0.75rem;
 	--text-sm--line-height: 1rem;
 	--text-2xl: 1.5rem;
@@ -54,15 +57,29 @@
 	--accent: #3966ff;
 	/* Footer wordmark: a near-white tint of the paper in light mode, the accent in dark. */
 	--wordmark: #f2f2f1;
-	color-scheme: light dark;
+	color-scheme: light;
+}
+
+/* The header toggle sets data-theme on <html> (see ThemeScript). Without it, the system theme applies. */
+:root[data-theme='dark'] {
+	--background: #141414;
+	--foreground: #fafafa;
+	--muted: #8f8f8f;
+	--line: #262626;
+	--wordmark: var(--accent);
+	color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root:not([data-theme]) {
 		--background: #141414;
 		--foreground: #fafafa;
 		--muted: #8f8f8f;
 		--line: #262626;
 		--wordmark: var(--accent);
+		color-scheme: dark;
 	}
 }
+
+/* `dark:` styles follow the resolved theme, which ThemeScript always writes to data-theme. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));

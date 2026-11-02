@@ -16,7 +16,6 @@ The left-hand menu has **Pages**, **Header** and **Footer**.
 | On the page | In the editor |
 | --- | --- |
 | "Studio Sumner" at the top left | Header → Site Title |
-| Info, Work, Contact | Header → Navigation |
 | The large opening statement | Pages → Info → Components → Statement |
 | Selected clients | Pages → Info → Components → Clients and Services → Clients |
 | Services (Brand, Websites…) | Pages → Info → Components → Clients and Services → Services |
@@ -24,7 +23,7 @@ The left-hand menu has **Pages**, **Header** and **Footer**.
 | The big wordmark at the bottom | Footer → Wordmark (from tablet width up) and Wordmark (Phones) |
 | The copyright line | Footer → Copyright |
 
-The smiley icon, the colours and the layout are part of the design and live in code.
+The smiley icon, the colours, the Light/Dark toggle, the round menu button and the layout are part of the design and live in code.
 
 ## Common edits
 
@@ -40,7 +39,7 @@ The smiley icon, the colours and the layout are part of the design and live in c
 
 **Services.** Each service has a Name (Brand) and a Detail, shown on the line below it (Identity, naming, strategy).
 
-**Navigation.** Each item has a Title and, optionally, a Page or a URL. The item for the page you're on shows in black; the others show in grey. Items with neither a Page nor a URL (Work and Contact for now) show as plain grey text.
+**Navigation.** Header → Navigation still holds Info, Work and Contact, but the header no longer shows them. The round menu button is a placeholder for now.
 
 **Wordmark.** Type it normally; the site shows it in capitals and sizes it automatically so it spans the page edge to edge. Keep the phone version short, as one word fits best.
 
