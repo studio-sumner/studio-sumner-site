@@ -17,4 +17,28 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
+
+	/*
+	// Switching Light/Dark (ThemeToggle sets data-theme-transition for its length): colours cross-fade
+	// while the page racks out of focus and back. In the base layer so elements with their own
+	// transition utilities, such as the toggle's sliding box, keep them.
+	*/
+	@media (prefers-reduced-motion: no-preference) {
+		:root[data-theme-transition],
+		:root[data-theme-transition] * {
+			transition-property: background-color, color, fill, stroke, border-color;
+			transition-duration: 0.6s;
+			transition-timing-function: var(--default-transition-timing-function);
+		}
+
+		:root[data-theme-transition] main {
+			animation: rack-focus 0.6s var(--default-transition-timing-function);
+		}
+	}
+}
+
+@keyframes rack-focus {
+	40% {
+		filter: blur(3px);
+	}
 }
