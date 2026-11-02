@@ -27,12 +27,12 @@
 		:root[data-theme-transition],
 		:root[data-theme-transition] * {
 			transition-property: background-color, color, fill, stroke, border-color;
-			transition-duration: 0.6s;
+			transition-duration: 1.2s;
 			transition-timing-function: var(--default-transition-timing-function);
 		}
 
 		:root[data-theme-transition] main {
-			animation: rack-focus 0.6s var(--default-transition-timing-function);
+			animation: rack-focus 1.2s var(--default-transition-timing-function);
 		}
 	}
 }

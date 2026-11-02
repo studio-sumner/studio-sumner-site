@@ -21,7 +21,7 @@ const applyTheme = theme => {
 };
 
 // Matches the rack-focus length in main.css.
-const TRANSITION_MS = 600;
+const TRANSITION_MS = 1200;
 let transitionTimer;
 
 // Marks <html> for the length of the switch so main.css can fade colours and rack focus.
@@ -45,7 +45,7 @@ const Option = ({label, value, theme, onSelect, className}) => (
 		aria-pressed={theme ? theme === value : undefined}
 		onClick={() => onSelect(value)}
 		className={cx(
-			'relative cursor-pointer px-1.5 text-xs transition-colors motion-reduce:transition-none',
+			'relative cursor-pointer px-1.5 text-xs transition-colors duration-600 motion-reduce:transition-none',
 			className,
 		)}>
 		{label}
@@ -90,7 +90,7 @@ export default function ThemeToggle() {
 			className="relative grid grid-cols-2">
 			<span
 				aria-hidden="true"
-				className="absolute inset-y-0 left-0 w-1/2 bg-line transition-transform motion-reduce:transition-none dark:translate-x-full"
+				className="absolute inset-y-0 left-0 w-1/2 bg-line transition-transform duration-600 motion-reduce:transition-none dark:translate-x-full"
 			/>
 			<Option
 				label="Light"
