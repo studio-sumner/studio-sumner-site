@@ -4,7 +4,7 @@ Every word on the portfolio site lives in Sanity, the content editor built into 
 
 ## Opening the editor
 
-- **Live site:** add `/admin` to the site address, for example `https://studio-sumner-site.vercel.app/admin`.
+- **Live site:** add `/admin` to the site address, for example `https://wearesumner.com/admin` (or `https://staging.wearesumner.com/admin` for the staging preview).
 - **On this Mac:** run `yarn start` in this folder, then open `http://localhost:3000/admin`.
 
 Sign in with the Sanity account that owns the project (project `ms2q3iub`). Both addresses edit the same content, so a change made locally shows on the live site too.
@@ -64,7 +64,7 @@ The live site checks Sanity for new content at most once a minute. After you pub
 
 Content edits in Sanity never need a deploy. Code changes go through staging first:
 
-1. Changes are pushed to the `staging` branch. Vercel builds a preview at https://studio-sumner-site-git-staging-studio-sumner.vercel.app, usually within two or three minutes. The address stays the same, so it can be bookmarked or shared with a client.
+1. Changes are pushed to the `staging` branch. Vercel builds a preview at https://staging.wearesumner.com, usually within two or three minutes. The address stays the same, so it can be bookmarked or shared with a client.
 2. Review the preview. The staging preview reads the same published content as the live site.
 3. Once approved, `staging` is merged into `main`, and Vercel deploys the live site automatically.
 
